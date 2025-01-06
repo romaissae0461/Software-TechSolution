@@ -29,4 +29,9 @@ class Software extends Model
     public function service(){
         return $this->belongsTo(Service::class);
     }
+
+    public function supportLevel()
+    {
+        return $this->belongsTo(SupportLevel::class);
+    }
 }

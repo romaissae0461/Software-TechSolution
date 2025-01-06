@@ -4,21 +4,22 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SoftwareController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\TechSolController;
+use App\Http\Controllers\SupportLevelController;
 
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::get('/show', [SoftwareController::class, 'show']);
 
 Route::get('/index', [SoftwareController::class, 'index'])->name('software.index');
 
-Route::get('/addsoftware', [SoftwareController::class, 'create']);
+Route::get('/addsoftware', [SoftwareController::class, 'create'])->name('software.create');
 Route::post('/store', [SoftwareController::class, 'store'])->name('software.store');
-Route::get('/software/{letter?}', [SoftwareController::class, 'alphabetically'])->name('software.alphabetically');
+Route::get('/alphabet/{letter?}', [SoftwareController::class, 'alphabetically'])->name('alphabet.search');
 Route::get('/edit/{id}', [SoftwareController::class, 'edit'])->name('software.edit');
 Route::put('/edit/{id}', [SoftwareController::class, 'update'])->name('software.update');
+Route::get('/show/{id}', [SoftwareController::class, 'show'])->name('software.show');
 Route::delete('/software/{id}', [SoftwareController::class, 'delete'])->name('software.delete');
 
 
@@ -41,3 +42,6 @@ Route::get('/tech/edit/{id}', [TechSolController::class, 'edit'])->name('tech.ed
 Route::put('/tech/edit/{id}', [TechSolController::class, 'update'])->name('tech.update');
 Route::get('/tech/{id}', [TechSolController::class, 'show'])->name('tech.show');
 Route::delete('/tech/delete/{id}', [TechSolController::class, 'delete'])->name('tech.delete');
+
+//Support Level
+Route::resource('support_levels', SupportLevelController::class);

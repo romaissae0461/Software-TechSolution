@@ -6,9 +6,33 @@
     <title>Software-TechSolut</title>
 
     <style>
+          
+      .container-fluid {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.container-fluid .row {
+    flex: 1; 
+    margin-left: 100;
+    min-height: 100vh;
+}
+
+.form-group{
+  min-width: 600px;
+  overflow-x: auto;
+}
+        
       .table {
     margin-top: 20px; 
     min-width: 700px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+.table thead {
+    background-color: #5f249f;
+    color: white;
 }
 
 .table-responsive {
@@ -18,16 +42,62 @@
 .table th, .table td {
     text-align: center;
     vertical-align: middle;
+    padding: 12px;
 }
 
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+
+.table tbody tr:hover {
+    background-color: #ececec; /* Row highlight on hover */
+}
+.alert {
+    margin-top: 20px;
+    border-radius: 10px;
+}
 .btn-primary {
     background-color: #5f249f !important; 
     border: 2px solid #ddd !important; 
     border-radius: 10px !important; 
-    transition: background-color 0.3s ease !important; /* Smooth transition for hover effect */
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease !important; 
 }
 .btn-primary:hover {
-    background-color:rgb(47, 16, 79) !important; 
+    background-color:rgb(47, 16, 79) !important;
+    transform: translateY(-2px); 
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+.view-all-btn {
+    background-color: #5f249f;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.view-all-btn:hover {
+    background-color: rgb(47, 16, 79);
+    transform: translateY(-2px);
 }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -40,7 +110,8 @@
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <span class="fs-5 d-none d-sm-inline">Menu</span>
+                    <strong class="fs-5 d-none d-sm-inline">{{ \Carbon\Carbon::now()->format('l, F j, Y') }}
+</strong>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
@@ -69,7 +140,7 @@
                   <!-- Alphabet Links -->
     <div style="display: grid; grid-template-columns: repeat(10, auto); gap: 5px; max-width: 100%; ">
         @foreach (range('A', 'Z') as $letter)
-            <a href="{{ route('software.alphabetically', $letter) }}" class="text-center" style="color:white; ">{{ $letter }}</a>
+            <a href="{{ route('alphabet.search', $letter) }}" class="text-center" style="color:white; ">{{ $letter }}</a>
         @endforeach
     </div>
     
@@ -78,7 +149,6 @@
         <div class="col py-3">
             
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-              <a class="navbar-brand" href="#">Navbar</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -86,25 +156,10 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
                   </li>
-                  <!-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                  </li> -->
+                 
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                   <input id="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

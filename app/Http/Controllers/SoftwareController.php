@@ -6,13 +6,25 @@ use Illuminate\Http\Request;
 use App\Models\Software;
 use App\Models\Category;
 use App\Models\Service;
+use App\Models\TechSol;
+use App\Models\SupportLevel;
 
 
 class SoftwareController extends Controller
 {
     public function index(){
         $softwares=Software::all();
-        return view('software.index', compact('softwares'));
+        $supportLevels = SupportLevel::all();
+        return view('software.index', compact('softwares', 'supportLevels'));
+    }
+    public function show($id)
+    {
+        $software = Software::findOrFail($id);
+        $categories = Category::all();
+        $services = Service::all();
+        $supportLevels = SupportLevel::all();
+
+        return view('software.show', compact('software','categories','services', 'supportLevels'));
     }
 
     public function create(){
@@ -106,7 +118,7 @@ class SoftwareController extends Controller
             'sms'=>'nullable|boolean',
             'time_insta'=>'nullable|integer',
             'arp_full_name'=>'nullable|string',
-            'exe_file_path'=>'nullable|string',
+            'exe_file_path'=>'nullable|file|mimes:exe|max:2048',
             'complexity'=>'nullable|in:Complexe,Moyen,Simple',
             'criticite'=>'nullable|in:Complexe,Moyen,Simple',
             'prerequis'=>'nullable|string',
@@ -114,6 +126,10 @@ class SoftwareController extends Controller
 
         $softwares=Software::findOrFail($id);
         $softwares->update($validated);
+        if ($request->hasFile('exe_file_path')) {
+            $file = $request->file('exe_file_path');
+            $filePath = $file->store('uploads', 'public');
+        }
         return redirect()->route('software.index')->with('success', 'software updated successflly!');
     }
 
@@ -135,7 +151,11 @@ class SoftwareController extends Controller
     
         $softwares = $softwareQuery->orderBy('name')->get();
         $techSols = $techSolQuery->orderBy('name')->get();
-    
+
+        //pagination
+        $softwares = $softwareQuery->orderBy('name')->paginate(10);
+        $techSols = $techSolQuery->orderBy('name')->paginate(10);
+
         return view('software.alphabetical', compact('softwares', 'techSols', 'letter'));
     }
     
