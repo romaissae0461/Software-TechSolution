@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Service;
 use App\Models\TechSol;
 use App\Models\SupportLevel;
+use App\Models\Document;
 
 
 class SoftwareController extends Controller
@@ -15,7 +16,8 @@ class SoftwareController extends Controller
     public function index(){
         $softwares=Software::all();
         $supportLevels = SupportLevel::all();
-        return view('software.index', compact('softwares', 'supportLevels'));
+        $documentations = Document::all();
+        return view('software.index', compact('softwares', 'supportLevels', 'documentations'));
     }
     public function show($id)
     {
@@ -76,7 +78,7 @@ class SoftwareController extends Controller
                 $languages[] = ucfirst($lang);  // this will add the language to the array if "Yes"
             }
         }
-    
+        
         // this will store the languages as a string separated with a comma
         $validated['languages'] = implode(', ', $languages);
 
@@ -118,7 +120,7 @@ class SoftwareController extends Controller
             'sms'=>'nullable|boolean',
             'time_insta'=>'nullable|integer',
             'arp_full_name'=>'nullable|string',
-            'exe_file_path'=>'nullable|file|mimes:exe|max:2048',
+            'exe_file_path'=>'nullable|string',
             'complexity'=>'nullable|in:Complexe,Moyen,Simple',
             'criticite'=>'nullable|in:Complexe,Moyen,Simple',
             'prerequis'=>'nullable|string',
@@ -126,10 +128,6 @@ class SoftwareController extends Controller
 
         $softwares=Software::findOrFail($id);
         $softwares->update($validated);
-        if ($request->hasFile('exe_file_path')) {
-            $file = $request->file('exe_file_path');
-            $filePath = $file->store('uploads', 'public');
-        }
         return redirect()->route('software.index')->with('success', 'software updated successflly!');
     }
 
@@ -159,4 +157,11 @@ class SoftwareController extends Controller
         return view('software.alphabetical', compact('softwares', 'techSols', 'letter'));
     }
     
+    public function search(Request $request){
+        $keyword = $request->input('keyword');
+
+        $softwares = Software::where('mot_clef', 'LIKE', '%' . $keyword . '%')->get();
+
+        return view('software.search', compact('softwares', 'keyword'));
+    }
 }

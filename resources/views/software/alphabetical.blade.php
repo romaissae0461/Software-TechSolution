@@ -13,7 +13,7 @@
             @else
                 <ul class="list-group">
                     @foreach ($softwares as $software)
-                        <li class="list-group-item">{{ $software->name }}</li>
+                        <li class="list-group-item"><a href="{{ route('software.show', $software->id) }}" style="font-size: 14px;font-weight: bold; color:black;">{{ $software->name }}</a></li>
                     @endforeach
                 </ul>
             @endif
@@ -27,7 +27,7 @@
             @else
                 <ul class="list-group">
                     @foreach ($techSols as $techSol)
-                        <li class="list-group-item">{{ $techSol->name }}</li>
+                        <li class="list-group-item"><a href="{{ route('tech.show', $techSol->id) }}" style="font-size: 14px;font-weight: bold; color:black;">{{ $techSol->name }}</a></li>
                     @endforeach
                 </ul>
             @endif

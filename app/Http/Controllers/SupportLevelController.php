@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\SupportLevel;
 
 class SupportLevelController extends Controller
 {
@@ -14,13 +15,13 @@ class SupportLevelController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'titre' => 'required|string|max:255',
             'procedure' => 'nullable|string',
         ]);
 
         SupportLevel::create($request->all());
 
-        return redirect()->route('support_levels.index')->with('success', 'Support level created successfully.');
+        return redirect()->route('software.show')->with('success', 'Support level created successfully.');
     }
 
     public function edit($id)
@@ -33,13 +34,13 @@ class SupportLevelController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'titre' => 'required|string|max:255',
             'procedure' => 'nullable|string',
         ]);
 
         $supportLevel = SupportLevel::findOrFail($id);
         $supportLevel->update($request->all());
 
-        return redirect()->route('support_levels.index')->with('success', 'Support level updated successfully.');
+        return redirect()->route('software.index')->with('success', 'Support level updated successfully.');
     }
 }

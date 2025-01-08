@@ -85,7 +85,7 @@
             </div>
 
             <div class="form-group">
-                <label for="category_id">Category:</label>
+                <label for="category_id">Category: <a href="{{route('category.create')}}">  Ajouter une categorie</a></label> 
                 <select name="category_id" id="category_id" class="form-control">
                     <option value="">Select a category</option>
                     @foreach($categories as $category)
@@ -95,7 +95,7 @@
             </div>
 
             <div class="form-group">
-                <label for="service_id">Service:</label>
+                <label for="service_id">Service:  <a href="{{route('service.create')}}">  Ajouter un service</a>  </label>
                 <select name="service_id" id="service_id" class="form-control">
                     <option value="">Select a service</option>
                     @foreach($services as $service)
@@ -161,7 +161,7 @@
 
             <div class="form-group">
                 <label for="exe_file_path">Inventory .exe File:</label>
-                <input type="file" id="exe_file_path" name="exe_file_path" class="form-control">
+                <input type="text" id="exe_file_path" name="exe_file_path" class="form-control">
             </div>
 
             <div class="form-group">

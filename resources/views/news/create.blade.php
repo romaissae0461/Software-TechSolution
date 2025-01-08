@@ -1,7 +1,7 @@
 @extends('layouts.first')
 
 @section('cont')
-    <h1>Add New News</h1>
+    <h1>Ajouter Nouvelle News</h1>
 
     <form action="{{ route('news.store') }}" method="POST">
         @csrf
@@ -15,6 +15,7 @@
             <textarea class="form-control" id="contenu" name="contenu" rows="5" required></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Add News</button>
+        <button type="submit" class="btn btn-primary">Ajouter News</button>
+        <a href="{{route('home')}}" class="btn btn-primary">Retour</a>
     </form>
 @endsection

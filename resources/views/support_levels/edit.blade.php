@@ -14,13 +14,13 @@
         </div>
     @endif
 
-    <form action="{{ route('support_levels.update', $supportLevel->id) }}" method="POST">
+    <form action="{{ route('suplev.update', $supportLevel->id) }}" method="POST">
         @csrf
         @method('PUT')
 
         <div class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" class="form-control" value="{{ $supportLevel->title }}" required>
+            <label for="titre">Titre:</label>
+            <input type="text" id="titre" name="titre" class="form-control" value="{{ $supportLevel->titre }}" required>
         </div>
 
         <div class="form-group">

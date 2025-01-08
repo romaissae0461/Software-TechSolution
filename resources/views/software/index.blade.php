@@ -13,6 +13,7 @@
                 <th>Function</th>
                 <th>Version</th>
                 <th>Editor</th>
+                <th>RITM</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -23,6 +24,7 @@
                     <td>{{ $software->function }}</td>
                     <td>{{ $software->version }}</td>
                     <td>{{ $software->editor }}</td>
+                    <td>{{ $software->rfc_number }}</td>
                     <td>
                         <a href="{{ route('software.show', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-info-circle fa-lg"></i></a>
                         <a href="{{ route('software.edit', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a>
@@ -51,16 +53,33 @@
 </div>
 </div>
     @endif
-<h3>Support Levels <a href="{{ route('support_levels.create')}}"><i class="fas fa-plus fa-xs" style="color: #5f249f;"></i></a></h3>
-@if($supportLevels->isNotEmpty())
-    @foreach($supportLevels as $supportLevel)
-        <div class="support-level">
-            <p><strong>Title:</strong> {{ $supportLevel->title }}</p>
-            <p><strong>Procedure:</strong> {{ $supportLevel->procedure }}</p>
-        </div>
-    @endforeach
-@else
-    <p class="alert alert-warning">No support levels available.</p>
-@endif
+
+    <br>
+    <br>
+
+    <div class="card">
+    <div class="card-header text-white" style="background-color: #5f249f">
+        <h4 class="card-title">Documentation <a href="{{ route('doc.create')}}"><i class="fas fa-plus fa-xs" style="color: white;"></i></a></h4>
+    </div>
+
+    @if($documentations->isNotEmpty())
+        @foreach($documentations as $documentation)
+            <div class="card-body">
+                <p><strong>{{ $documentation->titre }}</strong></p>
+                <p><strong>Description:</strong> {{ $documentation->description }}</p>
+                <p><a href="{{ asset('storage/'.$documentation->file_path) }}" target="_blank" class="btn btn-sm btn-info">
+                        View PDF
+                    </a>
+                </p>
+                <p class="news-meta text-right mb-3">
+                    <strong>Created: </strong>{{ $documentation->created_at->format('d, M, Y') }} <strong> at </strong>{{ $documentation->created_at->format('H:i') }}
+                </p>
+            </div>
+        @endforeach
+    @else
+        <p class="alert alert-warning">No documentation available.</p>
+    @endif
+</div>
+
 
 @endsection

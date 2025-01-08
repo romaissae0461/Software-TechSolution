@@ -14,11 +14,11 @@
         </div>
     @endif
 
-    <form action="{{ route('support_levels.store') }}" method="POST">
+    <form action="{{ route('suplev.store') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" class="form-control" required>
+            <label for="titre">Titre:</label>
+            <input type="text" id="titre" name="titre" class="form-control" required>
         </div>
 
         <div class="form-group">

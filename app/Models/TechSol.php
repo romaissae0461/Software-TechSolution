@@ -11,5 +11,5 @@ class TechSol extends Model
 
     // Explicitly define the table name, because i get error 1146
     protected $table = 'techsols';
-     protected $fillable= ['name', 'support_informations'];
+    protected $fillable= ['name', 'support_informations'];
 }

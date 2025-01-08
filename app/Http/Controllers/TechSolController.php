@@ -11,6 +11,11 @@ class TechSolController extends Controller
         $techsols=TechSol::all();
         return view('tech.index', compact('techsols'));
     }
+    
+    public function show($id){
+        $techsols=TechSol::findOrFail($id);
+        return view('tech.show',compact('techsols'));
+    }
 
     public function create(){
         return view('tech.create');

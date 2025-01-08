@@ -223,7 +223,7 @@ If the language is not found, the other radio button will be checked -->
         <div class="form-group d-flex">
             <label for="exe_file_path" class="col-sm-2 col-form-label">Inventory .exe file:</label>
             <div class="col-sm-10">
-            <input type="file" class="form-control"  id="exe_file_path" name="exe_file_path" value="{{ $softwares->exe_file_path }}" ><br>
+            <input type="text" class="form-control"  id="exe_file_path" name="exe_file_path" value="{{ $softwares->exe_file_path }}" ><br>
             </div>
         </div>
 
@@ -254,6 +254,7 @@ If the language is not found, the other radio button will be checked -->
 
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Update</button>
+            <a href="{{route('software.index')}}" class="btn btn-primary">Retour</a>
         </div>
 
     </form>

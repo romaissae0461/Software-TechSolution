@@ -3,7 +3,7 @@
 @section('cont')
     <h1>Update New News</h1>
 
-    <form action="{{ route('news.update') }}" method="POST">
+    <form action="{{ route('news.update', $news->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -17,5 +17,6 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Update News</button>
+        <a href="{{route('home')}}" class="btn btn-primary">Retour</a>
     </form>
 @endsection
