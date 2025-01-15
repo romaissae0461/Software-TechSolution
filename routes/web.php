@@ -67,3 +67,7 @@ Route::post('/service/create', [ServiceController::class, 'store'])->name('servi
 // Documentation
 Route::get('/doc/create',[DocumentController::class, 'create'])->name('doc.create');
 Route::post('/doc/store',[DocumentController::class, 'store'])->name('doc.store');
+Route::get('/doc/edit/{id}', [DocumentController::class, 'edit'])->name('doc.edit');
+Route::put('/doc/update/{id}', [DocumentController::class, 'update'])->name('doc.update');
+Route::delete('/doc/delete/{id}',[DocumentController::class, 'delete'])->name('doc.delete');
+

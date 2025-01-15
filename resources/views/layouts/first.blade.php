@@ -66,7 +66,7 @@
     transition: background-color 0.3s ease, transform 0.2s ease !important; 
 }
 .btn-primary:hover {
-    background-color:rgb(47, 16, 79) !important;
+    background-color:rgb(144, 99, 189) !important;
     transform: translateY(-2px); 
 }
 
@@ -112,6 +112,20 @@
 .cursive {
   font-family: cursive;
 }
+.pagination .page-link {
+        color: #5f249f !important; /* Changes the text color of the links */
+        border-color: #5f249f !important; /* Changes the border color of the links */
+    }
+    .pagination .page-link:hover {
+        background-color: #5f249f !important; /* Adds a purple background on hover */
+        color: #fff !important; /* Changes the text color to white for better contrast */
+    }
+
+    .pagination .active .page-link {
+        background-color: #5f249f !important;  /* Sets a purple background for the active link */
+        border-color: #5f249f !important; /* Sets the border color for the active link */
+        color: #fff !important; /* Changes the text color to white */
+    }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">

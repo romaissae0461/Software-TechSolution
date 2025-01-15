@@ -10,13 +10,12 @@ use App\Models\Service;
 class ServiceController extends Controller
 {
     public function create(){
-        $categories = Category::all();
         $services = Service::all();
-        return view('service.create', compact('categories','services'));
+        return view('service.create', compact('services'));
     }
 
-    public function store(){
-        $validated=request->validate([
+    public function store(Request $request){
+        $validated=$request->validate([
             'name'=>'required|string',
         ]);
         Service::create($validated);

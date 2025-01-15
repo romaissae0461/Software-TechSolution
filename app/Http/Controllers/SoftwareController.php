@@ -14,7 +14,7 @@ use App\Models\Document;
 class SoftwareController extends Controller
 {
     public function index(){
-        $softwares=Software::all();
+        $softwares=Software::paginate(10);
         $supportLevels = SupportLevel::all();
         $documentations = Document::all();
         return view('software.index', compact('softwares', 'supportLevels', 'documentations'));
@@ -24,9 +24,8 @@ class SoftwareController extends Controller
         $software = Software::findOrFail($id);
         $categories = Category::all();
         $services = Service::all();
-        $supportLevels = SupportLevel::all();
-
-        return view('software.show', compact('software','categories','services', 'supportLevels'));
+        $documentations = Document::all();
+        return view('software.show', compact('software','categories','services', 'documentations'));
     }
 
     public function create(){
@@ -44,7 +43,7 @@ class SoftwareController extends Controller
     public function store(Request $request){
         $validated = $request->validate([
             'name'=>'required|string',
-            'function'=>'required|string',
+            'function'=>'nullable|string',
             'version'=>'required|string',
             'editor'=>'required|string',
             'qualification_statut'=>'nullable|in:Enattente,Qualifié,Rejeté,En cours,Qualifié avec réserve,Qualifié avec problème connu', //it can't be enum, it's either string or in and write options
@@ -57,7 +56,8 @@ class SoftwareController extends Controller
             'mot_clef'=>'nullable|string',
             'category_id'=>'nullable|exists:categories,id',
             'service_id'=>'nullable|exists:services,id', 
-            'os_compatibility'=>'nullable|in:Windows 10,Windows 11,Windows 8,Windows 7,Windows Server 2019,Windows Server 2016,macOS,Linux,Android,iOS',
+            'os_compatibility'=>'nullable|array',
+            'os_compatibility.*' => 'string|in:Windows 10,Windows 11,Windows 11/10,Android,iOS',
             'languages'=>'nullable|array',
             'master_integration'=>'nullable|boolean',
             // 'type'=>'nullable|string|in:courant,isolé',
@@ -82,6 +82,9 @@ class SoftwareController extends Controller
         // this will store the languages as a string separated with a comma
         $validated['languages'] = implode(', ', $languages);
 
+        if (isset($validated['os_compatibility'])) {
+            $validated['os_compatibility'] = implode(', ', $validated['os_compatibility']);
+        }
         
         Software::create($validated);
         return redirect()->route('software.index')->with("success", "software crée avec succés");
@@ -98,7 +101,7 @@ class SoftwareController extends Controller
     public function update(Request $request, $id){
         $validated = $request->validate([
             'name'=>'required|string',
-            'function'=>'required|string',
+            'function'=>'nullable|string',
             'version'=>'required|string',
             'editor'=>'required|string',
             'qualification_statut'=>'nullable|in:Enattente,Qualifié,Rejeté,En cours,Qualifié avec réserve,Qualifié avec problème connu', //it can't be enum, it's either string or in and write options
@@ -111,7 +114,8 @@ class SoftwareController extends Controller
             'mot_clef'=>'nullable|string',
             'category_id'=>'nullable|exists:categories,id',
             'service_id'=>'nullable|exists:services,id', 
-            'os_compatibility'=>'nullable|in:Windows 10,Windows 11,Windows 8,Windows 7,Windows Server 2019,Windows Server 2016,macOS,Linux,Android,iOS',
+            'os_compatibility'=>'nullable|array',
+            'os_compatibility.*' => 'string|in:Windows 10,Windows 11,Windows 11/10,Android,iOS',
             'languages'=>'nullable|array',
             'master_integration'=>'nullable|boolean',
             'type'=>'nullable|in:courant,isolé',
@@ -126,6 +130,12 @@ class SoftwareController extends Controller
             'prerequis'=>'nullable|string',
         ]);
 
+        if (isset($validated['os_compatibility'])) {
+            $validated['os_compatibility'] = implode(', ', $validated['os_compatibility']);
+        }
+        $validated['languages'] = implode(', ', $languages);
+
+    
         $softwares=Software::findOrFail($id);
         $softwares->update($validated);
         return redirect()->route('software.index')->with('success', 'software updated successflly!');

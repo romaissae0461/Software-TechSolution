@@ -83,6 +83,18 @@
                 <label for="mot_clef">Mot Clé:</label>
                 <input type="text" class="form-control" id="mot_clef" name="mot_clef" placeholder="Mot clé">
             </div>
+            <div class="form-group">
+                <label for="euc">EUC Technical Engineer</label>
+                <input type="text" class="form-control" id="euc" name="euc" placeholder="EUC Responsible">
+            </div>
+            <div class="form-group">
+                <label for="kb_num">KB Number</label>
+                <input type="text" class="form-control" id="kb_num" name="kb_num" placeholder="N° KB ServiceNow">
+            </div>
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" id="comment" name="comment" placeholder="Comment"></textarea>
+            </div>
 
             <div class="form-group">
                 <label for="category_id">Category: <a href="{{route('category.create')}}">  Ajouter une categorie</a></label> 
@@ -105,15 +117,34 @@
             </div>
 
             <div class="form-group">
-                <label for="os_compatibility">O.S Compatibility:</label>
-                <select name="os_compatibility" id="os_compatibility" class="form-control">
-                    <option value="">Select an O.S</option>
-                    <option value="Windows 10">Windows 10</option>
-                    <option value="Windows 11">Windows 11</option>
-                    <option value="Windows 11, 10">Windows 11, 10</option>
-                    <option value="Android">Android</option>
-                    <option value="iOS">iOS</option>
-                </select>
+                <label>O.S Compatibility:</label>
+                <div class="form-control">
+                    <div>
+                        <label>
+                            <input type="checkbox" name="os_compatibility[]" value="Windows 10"> Windows 10
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox" name="os_compatibility[]" value="Windows 11"> Windows 11
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox" name="os_compatibility[]" value="Windows 11/10"> Windows 11, 10
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox" name="os_compatibility[]" value="Android"> Android
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox" name="os_compatibility[]" value="iOS"> iOS
+                        </label>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
@@ -183,7 +214,7 @@
             </div>
 
             <div class="text-center">
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary">Créer</button>
         </div>
             </form>
     </div>

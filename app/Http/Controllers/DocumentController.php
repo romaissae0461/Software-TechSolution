@@ -37,4 +37,33 @@ class DocumentController extends Controller
 
         return redirect()->route('doc.create')->with('success', 'Documentation ajoutée avec succés');
     }
+    public function edit($id){
+        $doc= Document::findOrFail($id);
+        return view('doc.edit', compact('doc'));
+    }
+
+
+    public function update(Request $request, $id){
+        $validated = $request->validate([
+            'titre'=>'required|string',
+            'description'=>'nullable|string',
+            'file_path'=>'nullable|mimes:pdf|max:10240', 
+        ]);
+
+        if ($request->hasFile('file_path')) {
+            $filePath = $request->file('file_path')->store('documentation_pdfs', 'public');
+        } else {
+            $filePath = null;
+        }
+
+        Document::update([$validated]);
+
+        return redirect()->route('software.index')->with('success', 'Documentation modifié avec succés');
+    }
+
+    public function delete($id){
+        $doc=Document::findOrFail($id);
+        $doc->delete();
+        return redirect()->route('software.index')->with('Documentation Deleted!');
+    }
 }

@@ -6,7 +6,7 @@
   
 <div class="table-responsive">
 <table class="table table-bordered table-striped" style="table-layout: fixed; word-wrap: break-word;">
-        <thead class="thead-dark">
+        <thead >
             <tr>
                 <th>Name</th>
                 <th>Support Informations</th>
@@ -35,9 +35,7 @@
             @endforelse
         </tbody>
     </table>
-    <div class="mt-4 text-center">
-    <a href="{{ route('tech.index') }}" class="btn btn-primary px-4 py-2" style="background-color: #5f249f">View All Technology Solution</a>
-</div>
+    
    
 </div>
 

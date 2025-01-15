@@ -11,12 +11,11 @@ class CategoryController extends Controller
 {
     public function create(){
         $categories = Category::all();
-        $services = Service::all();
-        return view('category.create', compact('categories','services'));
+        return view('category.create', compact('categories'));
     }
 
-    public function store(){
-        $validated=request->validate([
+    public function store(Request $request){
+        $validated = $request->validate([
             'name'=>'required|string',
         ]);
         Category::create($validated);

@@ -6,80 +6,58 @@
   
 @if($softwares->isNotEmpty())
 <div class="table-responsive">
-<table class="table table-bordered table-striped">
-        <thead >
-            <tr>
-                <th>Name</th>
-                <th>Function</th>
-                <th>Version</th>
-                <th>Editor</th>
-                <th>RITM</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($softwares as $software)
+    <table class="table table-bordered table-striped">
+            <thead >
                 <tr>
-                    <td>{{ $software->name }}</td>
-                    <td>{{ $software->function }}</td>
-                    <td>{{ $software->version }}</td>
-                    <td>{{ $software->editor }}</td>
-                    <td>{{ $software->rfc_number }}</td>
-                    <td>
-                        <a href="{{ route('software.show', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-info-circle fa-lg"></i></a>
-                        <a href="{{ route('software.edit', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a>
-                        <form action="{{ route('software.delete', $software->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this software?')"><i class="fas fa-trash fa-lg"></i></button>
-                        </form>
-                    </td>
+                    <th>Name</th>
+                    <th>Function</th>
+                    <th>Version</th>
+                    <th>Editor</th>
+                    <th>RITM</th>
+                    <th>Actions</th>
                 </tr>
-
-            @empty
-                <tr>
-                    <td colspan="5">No software found.</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
-    <div class="mt-4 text-center">
-    <a href="{{ route('software.index') }}" class="view-all-btn">View All Software</a>
-</div>
+            </thead>
+            <tbody>
+                @forelse ($softwares as $software)
+                    <tr>
+                        <td>{{ $software->name }}</td>
+                        <td>{{ $software->function }}</td>
+                        <td>{{ $software->version }}</td>
+                        <td>{{ $software->editor }}</td>
+                        <td>{{ $software->rfc_number }}</td>
+                        <td>
+                            <a href="{{ route('software.show', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-info-circle fa-lg"></i></a>
+                            <a href="{{ route('software.edit', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a>
+                            <form action="{{ route('software.delete', $software->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this software?')"><i class="fas fa-trash fa-lg"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    
+                    @empty
+                    <tr>
+                        <td colspan="5">No software found.</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        <div class="pagination-wrapper text-center mt-4">
+                {{$softwares->links('pagination::bootstrap-4')}}
+            </div>    
+   
     @else
     <p class="alert alert-warning text-center" >No software found with the alphabet {{$letter}}</p>
     <div class="mt-4 text-center">
-    <a href="{{ route('software.index') }}" class="view-all-btn">View All Software</a>
-</div>
-</div>
-    @endif
-
-    <br>
-    <br>
-
-    <div class="card">
-    <div class="card-header text-white" style="background-color: #5f249f">
-        <h4 class="card-title">Documentation <a href="{{ route('doc.create')}}"><i class="fas fa-plus fa-xs" style="color: white;"></i></a></h4>
+        <a href="{{ route('software.index') }}" class="view-all-btn">View All Software</a>
     </div>
-
-    @if($documentations->isNotEmpty())
-        @foreach($documentations as $documentation)
-            <div class="card-body">
-                <p><strong>{{ $documentation->titre }}</strong></p>
-                <p><strong>Description:</strong> {{ $documentation->description }}</p>
-                <p><a href="{{ asset('storage/'.$documentation->file_path) }}" target="_blank" class="btn btn-sm btn-info">
-                        View PDF
-                    </a>
-                </p>
-                <p class="news-meta text-right mb-3">
-                    <strong>Created: </strong>{{ $documentation->created_at->format('d, M, Y') }} <strong> at </strong>{{ $documentation->created_at->format('H:i') }}
-                </p>
-            </div>
-        @endforeach
-    @else
-        <p class="alert alert-warning">No documentation available.</p>
-    @endif
 </div>
+    @endif
+
+    <br>
+    <br>
+
 
 
 @endsection

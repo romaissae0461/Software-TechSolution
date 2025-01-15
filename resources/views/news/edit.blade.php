@@ -1,7 +1,7 @@
 @extends('layouts.first')
 
 @section('cont')
-    <h1>Update New News</h1>
+    <h1>Modifier la Nouvelle</h1>
 
     <form action="{{ route('news.update', $news->id) }}" method="POST">
         @csrf

@@ -137,19 +137,45 @@
             </div>
         </div>
 
-        <div class="form-group d-flex">
-            <label for="os_compatibility" class="col-sm-2 col-form-label">O.S Compatibility: </label>
-            <div class="col-sm-10">
-                <select name="os_compatibility" class="form-control" id="os_compatibility">
-                    <option value="">Select an O.S</option>
-                    <option value="Windows 10" {{ $softwares->os_compatibility == 'Windows 10' ? 'selected' : '' }}>Windows 10</option>
-                    <option value="Windows 11" {{ $softwares->os_compatibility == 'Windows 11' ? 'selected' : '' }}>Windows 11</option>
-                    <option value="Windows 11, 10" {{ $softwares->os_compatibility == 'Windows 11, 10' ? 'selected' : '' }}>Windows 11, 10</option>
-                    <option value="Android" {{ $softwares->os_compatibility == 'Android' ? 'selected' : '' }}>Android</option>
-                    <option value="iOS" {{ $softwares->os_compatibility == 'iOS' ? 'selected' : '' }}>iOS</option>
-                </select>
+        <div class="form-group">
+                <label>O.S Compatibility:</label>
+                <div class="form-control">
+                <div>
+    <label>
+        <input type="checkbox" name="os_compatibility[]" value="Windows 10" 
+            {{ in_array('Windows 10', explode(', ', $softwares->os_compatibility)) ? 'checked' : '' }}>
+        Windows 10
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="os_compatibility[]" value="Windows 11" 
+            {{ in_array('Windows 11', explode(', ', $softwares->os_compatibility)) ? 'checked' : '' }}>
+        Windows 11
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="os_compatibility[]" value="Windows 11/10" 
+            {{ in_array('Windows 11/10', explode(', ', $softwares->os_compatibility)) ? 'checked' : '' }}>
+        Windows 11,10
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="os_compatibility[]" value="Android" 
+            {{ in_array('Android', explode(', ', $softwares->os_compatibility)) ? 'checked' : '' }}>
+        Android
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="os_compatibility[]" value="iOS" 
+            {{ in_array('iOS', explode(', ', $softwares->os_compatibility)) ? 'checked' : '' }}>
+        iOS
+    </label>
+                </div>
             </div>
-        </div>
 
         <div class="form-group d-flex">
             <label for="languages" class="col-sm-2 col-form-label">Languages: </label>
