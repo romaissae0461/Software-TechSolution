@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TechSol;
+use App\Models\Document;
 
 class TechSolController extends Controller
 {
@@ -14,7 +15,8 @@ class TechSolController extends Controller
     
     public function show($id){
         $techsols=TechSol::findOrFail($id);
-        return view('tech.show',compact('techsols'));
+        $documentations = Document::all();
+        return view('tech.show',compact('techsols', 'documentations'));
     }
 
     public function create(){

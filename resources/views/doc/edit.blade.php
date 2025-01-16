@@ -17,7 +17,7 @@
 
             <div class="form-group mt-3">
                 <label for="description">Description</label>
-                <textarea name="description" id="description" class="form-control">"{{$doc->description}}"</textarea>
+                <textarea name="description" id="description" class="form-control">{{$doc->description}}</textarea>
             </div>
 
             <div class="form-group mt-3">
@@ -30,6 +30,18 @@
     @else
         <small class="form-text text-muted mt-2">No file uploaded yet.</small>
     @endif
+            </div>
+
+            <div class="form-group mt-3">
+            <label for="software_id">Software</label> 
+            <select name="software_id" class="form-control" id="software_id">
+                    @foreach($softwares as $software)
+                        <option value="{{ $software->id }}" 
+                            {{ $doc->software_id == $software->id ? 'selected' : '' }}>
+                            {{ $software->name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="form-group mt-3 text-center">

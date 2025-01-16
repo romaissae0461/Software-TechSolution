@@ -24,7 +24,7 @@ class SoftwareController extends Controller
         $software = Software::findOrFail($id);
         $categories = Category::all();
         $services = Service::all();
-        $documentations = Document::all();
+        $documentations = Document::where('software_id', $id)->get();
         return view('software.show', compact('software','categories','services', 'documentations'));
     }
 

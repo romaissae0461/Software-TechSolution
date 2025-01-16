@@ -61,10 +61,11 @@
 <div class="mt-4 text-center">
 <a href="{{ route('software.index') }}" class="view-all-btn" style="background-color: green !important">View All Software</a>
 </div>
+
 <br>
 <div class="card">
 <div class="card-header text-white" style="background-color: #5f249f">
-        <h4 class="card-title">Documentation <a href="{{ route('doc.create')}}"><i class="fas fa-plus fa-xs" style="color: white;"></i></a></h4>
+        <h4 class="card-title">Documentation for {{$software->name}}<a href="{{ route('doc.create')}}"><i class="fas fa-plus fa-xs" style="color: white;"></i></a></h4>
     </div>
     @if($documentations->isNotEmpty())
         @foreach($documentations as $documentation)

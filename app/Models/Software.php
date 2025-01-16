@@ -34,4 +34,8 @@ class Software extends Model
     {
         return $this->belongsTo(SupportLevel::class);
     }
+    public function documentations()
+    {
+        return $this->hasMany(Document::class);
+    }
 }

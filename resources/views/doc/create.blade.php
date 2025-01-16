@@ -21,7 +21,17 @@
 
             <div class="form-group mt-3">
                 <label for="file_path">Upload PDF</label>
-                <input type="file" name="file_path" id="file_path" class="form-control">
+                <input type="file" name="file_path" id="file_path" class="form-control" required>
+            </div>
+            
+            <div class="form-group mt-3">
+            <label for="software_id">Software</label> 
+                <select name="software_id" id="software_id" class="form-control" required>
+                    <option value="">Select a Software</option>
+                    @foreach($softwares as $software)
+                        <option value="{{$software->id}}">{{$software->name}}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="form-group mt-3 text-center">

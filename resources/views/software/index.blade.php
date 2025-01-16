@@ -26,8 +26,8 @@
                         <td>{{ $software->editor }}</td>
                         <td>{{ $software->rfc_number }}</td>
                         <td>
-                            <a href="{{ route('software.show', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-info-circle fa-lg"></i></a>
-                            <a href="{{ route('software.edit', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a>
+                            <a href="{{ route('software.show', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-info-circle fa-lg"></i></a> <br>
+                            <a href="{{ route('software.edit', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a> <br>
                             <form action="{{ route('software.delete', $software->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')

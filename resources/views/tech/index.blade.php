@@ -10,7 +10,7 @@
             <tr>
                 <th>Name</th>
                 <th>Support Informations</th>
-                <th>Actions</th>
+                <th style="width: 15%;">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -19,7 +19,8 @@
                     <td>{{ $techsol->name }}</td>
                     <td>{{ $techsol->support_informations }}</td>
                     <td>
-                        <a href="{{ route('tech.edit', $techsol->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a>
+                        <a href="{{ route('tech.show', $techsol->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-info-circle fa-lg"></i></a> <br>
+                        <a href="{{ route('tech.edit', $techsol->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a><br>
                         <form action="{{ route('tech.delete', $techsol->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
