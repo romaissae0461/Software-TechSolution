@@ -3,7 +3,7 @@
 
 <div class="container">
 
-    <h1 class="mt-4 mb-4 text-center">Modification de fiche Software</h1>
+    <h1 class="mt-4 mb-4 text-center">Update Software</h1>
     @if($errors->any())
         <div style="color: red">
             <ul>
@@ -19,7 +19,7 @@
         @method('PUT')
         
         <div class="form-group d-flex">
-            <label for="name" class="col-sm-2 col-form-label">Nom: </label>
+            <label for="name" class="col-sm-2 col-form-label">Name: </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="name" name="name" value="{{ $softwares->name }}" required>
             </div>
@@ -51,18 +51,14 @@
             <div class="col-sm-10">
                 <select name="qualification_statut" class="form-control" id="qualification_statut" required>
                     <option value="">Select</option>
-                    <option value="Enattente" {{$softwares->qualification_statut == 'En attente' ? 'selected' : ''}}>En attente</option>
-                    <option value="Qualifié" {{$softwares->qualification_statut == 'Qualifié' ? 'selected' : ''}}>Qualifié</option>
-                    <option value="Rejeté" {{$softwares->qualification_statut == 'Rejeté' ? 'selected' : ''}}>Rejeté</option>
-                    <option value="En cours" {{$softwares->qualification_statut == 'En cours' ? 'selected' : ''}}>En cours</option>
-                    <option value="Qualifié avec réserve" {{$softwares->qualification_statut == 'Qualifié avec réserve' ? 'selected' : ''}}>Qualifié avec réserve</option>
-                    <option value="Qualifié avec problème connu" {{$softwares->qualification_statut == 'Qualifié avec problème connu' ? 'selected' : ''}}>Qualifié avec problème connu</option>
+                    <option value="Qualified" {{$softwares->qualification_statut == 'Qualified' ? 'selected' : ''}}>Qualified</option>
+                    <option value="Retired" {{$softwares->qualification_statut == 'Retired' ? 'selected' : ''}}>Retired</option>
                 </select>
             </div>
         </div>
 
         <div class="form-group d-flex">
-            <label for="rfc_number" class="col-sm-2 col-form-label">RFC number: </label>
+            <label for="rfc_number" class="col-sm-2 col-form-label">RITM number: </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="rfc_number" name="rfc_number" value="{{ $softwares->rfc_number }}">
             </div>
@@ -76,7 +72,7 @@
         </div>
 
         <div class="form-group d-flex">
-            <label for="qualification_date" class="col-sm-2 col-form-label">Qualification date: </label>
+            <label for="qualification_date" class="col-sm-2 col-form-label">Qualification date:</label>
             <div class="col-sm-10">
                 <input type="date" class="form-control" id="qualification_date" name="qualification_date" value="{{ $softwares->qualification_date }}">
             </div>
@@ -90,21 +86,21 @@
         </div>
 
         <div class="form-group d-flex">
-            <label for="responsable_cit" class="col-sm-2 col-form-label">Responsable C.I.T: </label>
+            <label for="euc" class="col-sm-2 col-form-label">EUC Manager: </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="responsable_cit" name="responsable_cit" value="{{ $softwares->responsable_cit }}">
+                <input type="text" class="form-control" id="euc" name="euc" value="{{ $softwares->euc }}">
             </div>
         </div>
 
         <div class="form-group d-flex">
-            <label for="adm" class="col-sm-2 col-form-label">Responsable ADM: </label>
+            <label for="adm" class="col-sm-2 col-form-label">ADM Manager: </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="adm" name="adm" value="{{ $softwares->adm }}">
             </div>
         </div>
 
         <div class="form-group d-flex">
-            <label for="mot_clef" class="col-sm-2 col-form-label">Mot Clef: </label>
+            <label for="mot_clef" class="col-sm-2 col-form-label">Keyword: </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="mot_clef" name="mot_clef" value="{{ $softwares->mot_clef }}">
             </div>
@@ -184,13 +180,13 @@
 the corresponding radio button will be checked (checked).
 If the language is not found, the other radio button will be checked -->
 
-                <label for="francais">Francais</label>
+                <label for="francais">French</label>
                 <input type="radio" id="francais_yes" name="languages[francais]" value="Yes" 
                     {{ strpos($softwares->languages, 'Français') !== false ? 'checked' : '' }}> Oui
                 <input type="radio" id="francais_no" name="languages[francais]" value="No" 
                     {{ strpos($softwares->languages, 'Français') === false ? 'checked' : '' }}> Non <br>
 
-                <label for="anglais">Anglais</label>
+                <label for="anglais">English</label>
                 <input type="radio" id="anglais_yes" name="languages[anglais]" value="Yes" 
                     {{ strpos($softwares->languages, 'Anglais') !== false ? 'checked' : '' }}> Oui
                 <input type="radio" id="anglais_no" name="languages[anglais]" value="No" 
@@ -198,14 +194,14 @@ If the language is not found, the other radio button will be checked -->
             </div>
         </div>
         <div class="form-group d-flex">
-            <label for="prerequis" class="col-sm-2 col-form-label">Prerequis:</label> 
+            <label for="prerequis" class="col-sm-2 col-form-label">Prerequisite:</label> 
             <div class="col-sm-10">
                 <textarea id="prerequis"  class="form-control" name="prerequis" style="resize: both"> {{ $softwares->prerequis }}</textarea><br>
             </div>
         </div>
 
         <div class="form-group d-flex">
-            <label for="master_integration" class="col-sm-2 col-form-label">Logiciel Intégré au Master:</label>
+            <label for="master_integration" class="col-sm-2 col-form-label">Master Integrated Software:</label>
             <div class="col-sm-10">
                 <input type="radio" id="master_integration_yes" name="master_integration" value="1" {{ $softwares->master_integration == '1' ? 'checked' : '' }}> Oui
                 <input type="radio" id="master_integration_no" name="master_integration" value="0" {{ $softwares->master_integration == '0' ? 'checked' : '' }}> Non <br>
@@ -218,7 +214,7 @@ If the language is not found, the other radio button will be checked -->
          -->
 
         <div class="form-group d-flex">
-            <label for="method_installation" class="col-sm-2 col-form-label">Method Installation:</label>
+            <label for="method_installation" class="col-sm-2 col-form-label">Installation Method:</label>
             <div class="col-sm-10">
                 <input type="radio" id="method_installation_auto" name="method_installation" value="auto" {{ $softwares->method_installation == 'auto' ? 'checked' : '' }}> Auto
                 <input type="radio" id="method_installation_man" name="method_installation" value="manually" {{ $softwares->method_installation == 'manually' ? 'checked' : '' }}> Manually <br>
@@ -233,7 +229,7 @@ If the language is not found, the other radio button will be checked -->
         </div>
         
         <div class="form-group d-flex">
-            <label for="time_insta" class="col-sm-2 col-form-label">Temps d'installation (en mn):</label>
+            <label for="time_insta" class="col-sm-2 col-form-label">Time of Installation (in min):</label>
             <div class="col-sm-10">
                 <input type="number" class="form-control"  id="time_insta" name="time_insta" min="0" value="{{ $softwares->time_insta }}" ><br>
             </div>
@@ -243,6 +239,12 @@ If the language is not found, the other radio button will be checked -->
             <label for="arp_full_name" class="col-sm-2 col-form-label">ARP full name:</label>
             <div class="col-sm-10">
             <input type="text" class="form-control"  id="arp_full_name" name="arp_full_name" value="{{ $softwares->arp_full_name }}" ><br>
+            </div>
+        </div>
+        <div class="form-group d-flex">
+            <label for="kb_num" class="col-sm-2 col-form-label">KB number:</label>
+            <div class="col-sm-10">
+            <input type="text" class="form-control"  id="kb_num" name="kb_num" value="{{ $softwares->kb_num }}" ><br>
             </div>
         </div>
 

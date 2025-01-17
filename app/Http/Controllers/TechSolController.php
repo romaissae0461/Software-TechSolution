@@ -15,7 +15,7 @@ class TechSolController extends Controller
     
     public function show($id){
         $techsols=TechSol::findOrFail($id);
-        $documentations = Document::all();
+        $documentations = Document::where('techsol_id', $id)->get();
         return view('tech.show',compact('techsols', 'documentations'));
     }
 
@@ -108,7 +108,7 @@ class TechSolController extends Controller
             'prerequis'=>'nullable|string',
         ]);
 
-        
+        $languages = [];
         if (isset($validated['os_compatibility'])) {
             $validated['os_compatibility'] = implode(', ', $validated['os_compatibility']);
         }

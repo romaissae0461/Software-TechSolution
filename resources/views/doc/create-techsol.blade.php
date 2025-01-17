@@ -5,7 +5,15 @@
     <div class="card-header text-white" style="background-color: #5f249f">
         <h4 class="card-title">Add New Documentation</h4>
     </div>
-
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <div class="card-body">
          <form action="{{ route('doc.store') }}" method="POST" enctype="multipart/form-data"> <!--enctype="multipart/form-data" attribute is used in HTML forms when you're uploading files (such as images, documents, or PDFs) to a server. -->
             @csrf
@@ -28,11 +36,11 @@
             </div>
             
             <div class="form-group mt-3">
-            <label for="software_id">Software</label> 
-                <select name="software_id" id="software_id" class="form-control" required>
-                    <option value="">Select a Software</option>
-                    @foreach($softwares as $software)
-                        <option value="{{$software->id}}">{{$software->name}}</option>
+                <label for="techsol_id">Tech Solution</label>
+                <select name="techsol_id" id="techsol_id" class="form-control">
+                    <option value="">Select a Tech Solution</option>
+                    @foreach($techsol as $solution)
+                        <option value="{{ $solution->id }}">{{ $solution->name }}</option>
                     @endforeach
                 </select>
             </div>

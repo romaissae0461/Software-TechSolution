@@ -46,7 +46,7 @@ class SoftwareController extends Controller
             'function'=>'nullable|string',
             'version'=>'required|string',
             'editor'=>'required|string',
-            'qualification_statut'=>'nullable|in:Enattente,Qualifié,Rejeté,En cours,Qualifié avec réserve,Qualifié avec problème connu', //it can't be enum, it's either string or in and write options
+            'qualification_statut'=>'nullable|in:Qualified,Retired', //it can't be enum, it's either string or in and write options
             'rfc_number'=>'nullable|string',
             'end_of_life'=>'nullable|date',
             'qualification_date'=>'nullable|date',
@@ -70,10 +70,13 @@ class SoftwareController extends Controller
             'complexity'=>'nullable|in:Complexe,Moyen,Simple',
             'criticite'=>'nullable|in:Complexe,Moyen,Simple',
             'prerequis'=>'nullable|string',
+            'euc' => 'nullable|string',
+            'kb_num' => 'nullable|string',
+            'comment' => 'nullable|string',
         ]);
 
         $languages = [];
-        foreach (['francais', 'anglais'] as $lang) {
+        foreach (['french', 'english'] as $lang) {
             if (isset($validated['languages'][$lang]) && $validated['languages'][$lang] === 'Yes') {
                 $languages[] = ucfirst($lang);  // this will add the language to the array if "Yes"
             }
@@ -104,7 +107,7 @@ class SoftwareController extends Controller
             'function'=>'nullable|string',
             'version'=>'required|string',
             'editor'=>'required|string',
-            'qualification_statut'=>'nullable|in:Enattente,Qualifié,Rejeté,En cours,Qualifié avec réserve,Qualifié avec problème connu', //it can't be enum, it's either string or in and write options
+            'qualification_statut'=>'nullable|in:Qualified,Retired', //it can't be enum, it's either string or in and write options
             'rfc_number'=>'nullable|string',
             'end_of_life'=>'nullable|date',
             'qualification_date'=>'nullable|date',
@@ -118,17 +121,29 @@ class SoftwareController extends Controller
             'os_compatibility.*' => 'string|in:Windows 10,Windows 11,Windows 11/10,Android,iOS',
             'languages'=>'nullable|array',
             'master_integration'=>'nullable|boolean',
-            'type'=>'nullable|in:courant,isolé',
             'method_installation'=>'nullable|in:auto,manually',
             'source'=>'nullable|string',
-            'sms'=>'nullable|boolean',
             'time_insta'=>'nullable|integer',
             'arp_full_name'=>'nullable|string',
             'exe_file_path'=>'nullable|string',
             'complexity'=>'nullable|in:Complexe,Moyen,Simple',
             'criticite'=>'nullable|in:Complexe,Moyen,Simple',
             'prerequis'=>'nullable|string',
+            'euc' => 'nullable|string',
+            'kb_num' => 'nullable|string',
+            'comment' => 'nullable|string',
         ]);
+
+        $languages = [];
+        foreach (['french', 'english'] as $lang) {
+            if (isset($validated['languages'][$lang]) && $validated['languages'][$lang] === 'Yes') {
+                $languages[] = ucfirst($lang);  // this will add the language to the array if "Yes"
+            }
+        }
+
+        // this will store the languages as a string separated with a comma
+        $validated['languages'] = implode(', ', $languages);
+
 
         if (isset($validated['os_compatibility'])) {
             $validated['os_compatibility'] = implode(', ', $validated['os_compatibility']);

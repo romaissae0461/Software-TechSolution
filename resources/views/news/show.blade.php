@@ -13,7 +13,7 @@
         <p>{{ $news->contenu }}</p>
     </div>
     <div class="text-center">
-        <a href="{{route('home')}}" class="btn btn-primary px-4 py-2" >Retour à l'accueil</a>
+        <a href="{{route('home')}}" class="btn btn-primary px-4 py-2" >Go Back</a>
     </div>
 </div>
 

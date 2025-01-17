@@ -110,6 +110,12 @@
             </div>
         </div>
 
+        <div class="form-group d-flex">
+            <label for="kb_num" class="col-sm-2 col-form-label">KB number:</label>
+            <div class="col-sm-10">
+            <input type="text" class="form-control"  id="kb_num" name="kb_num" value="{{ $techsols->kb_num }}" ><br>
+            </div>
+        </div>
 
         <div class="form-group">
                 <label>O.S Compatibility:</label>

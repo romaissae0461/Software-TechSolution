@@ -66,6 +66,7 @@ Route::post('/service/create', [ServiceController::class, 'store'])->name('servi
 
 // Documentation
 Route::get('/doc/create',[DocumentController::class, 'create'])->name('doc.create');
+Route::get('/doc/create/techsol', [DocumentController::class, 'createForTechSol'])->name('doc.create.techsol');
 Route::post('/doc/store',[DocumentController::class, 'store'])->name('doc.store');
 Route::get('/doc/edit/{id}', [DocumentController::class, 'edit'])->name('doc.edit');
 Route::put('/doc/edit/{id}', [DocumentController::class, 'update'])->name('doc.update');

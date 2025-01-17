@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 @forelse ($softwares as $software)
-                    <tr>
+                    <tr class="{{ $software->qualification_statut === 'Retired' ? 'bg-danger text-white' : '' }}">
                         <td>{{ $software->name }}</td>
                         <td>{{ $software->function }}</td>
                         <td>{{ $software->version }}</td>

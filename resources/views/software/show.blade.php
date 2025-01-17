@@ -10,7 +10,7 @@
             <div class="col-md-6">
                 <div class="d-flex " style="background-color: #f0f0f0;"><p><strong>Function:</strong> 
                 <div class="col-md-8">{{ $software->function }}<br>
-                <a style="color: red;"> This is a {{ $software->complexity }} application. <br> {{ $software->criticite }} availability required</a>
+                <!-- <a style="color: red;"> This is a {{ $software->complexity }} application. <br> {{ $software->criticite }} availability required</a> -->
                 </p></div></div>
                 <p><strong>Version:</strong> {{ $software->version }}</p>
                 <p style="background-color: #f0f0f0"><strong>Editor:</strong> {{ $software->editor }}</p>
@@ -26,13 +26,16 @@
 @endforeach
 </p>
                 <p style="background-color: #f0f0f0;"><strong>Languages:</strong> {{ $software->languages }}</p>
-                <p><strong>Prerequisites:</strong> {{ $software->prerequis }}</p>
+                <div class="d-flex "><p><strong>Prerequisites:</strong> 
+                <div class="col-md-8">{{ $software->prerequis }}
+                </p></div></div>
                 <p style="background-color: #f0f0f0;"><strong>Qualification Date:</strong>@if($software->qualification_date)
                     {{ $software->qualification_date->format('d, M, Y') }}
                     @else
                        
                     @endif </p>
                 <p><strong>Source:</strong> {{ $software->source }}</p>
+                <p style="background-color: #f0f0f0;"><strong>KB Number:</strong> {{ $software->kb_num }}</p>
             </div>
             <div class="col-md-6" style=" padding-top:10px">
                 <p style="background-color: #f0f0f0;"><strong>Update Date:</strong> @if($software->update_date)
@@ -40,7 +43,7 @@
                     @else
                         
                     @endif</p>
-                <p><strong>Responsible C.I.T:</strong> {{ $software->responsable_cit }}</p>
+                <p><strong>Responsible EUC:</strong> {{ $software->euc }}</p>
                 <p style="background-color: #f0f0f0;"><strong>Responsible ADM:</strong> {{ $software->adm }}</p>
                 <p><strong>Keywords:</strong> {{ $software->mot_clef }}</p>
                 <p style="background-color: #f0f0f0;"><strong>Category:</strong> {{ $software->category->name }}</p>
@@ -55,7 +58,9 @@
                 <p style="background-color: #f0f0f0;"><strong>Installation Time:</strong> {{ $software->time_insta }} minutes</p>
             </div>
         </div>
-
+        <div class="text-right">
+            <a href="{{ route('software.edit', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a> <br>
+        </div>
     </div>
 </div>
 <div class="mt-4 text-center">
@@ -65,12 +70,12 @@
 <br>
 <div class="card">
 <div class="card-header text-white" style="background-color: #5f249f">
-        <h4 class="card-title">Documentation for {{$software->name}}<a href="{{ route('doc.create')}}"><i class="fas fa-plus fa-xs" style="color: white;"></i></a></h4>
+        <h4 class="card-title">Documentation for {{$software->name}}  <a href="{{ route('doc.create')}}"><i class="fas fa-plus fa-xs" style="color: white;"></i></a></h4>
     </div>
     @if($documentations->isNotEmpty())
         @foreach($documentations as $documentation)
             <div class="card-body">
-                <p><strong>{{ $documentation->titre }}</strong></p>
+                <!-- <p><strong>{{ $documentation->titre }}</strong></p> -->
                 <p><strong>Description:</strong> {{ $documentation->description }}</p>
                 <p><a href="{{ asset('storage/'.$documentation->file_path) }}" target="_blank" class="btn btn-sm btn-info">
                         View PDF

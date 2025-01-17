@@ -13,21 +13,29 @@ class DocumentController extends Controller
         $documentations = Document::all();
         return view('software.index', compact('documentations'));
     }
+    //For Software 
 
     public function create(){
-        $softwares=Software::all();
-        $techsol = TechSol::all(); 
-        return view('doc.create', compact('softwares','techsol'));
+        $softwares = Software::all();
+        return view('doc.create', compact('softwares'));
+    }
+    
+    // For Tech Solution
+    public function createForTechSol() {
+        $techsol = TechSol::all();
+        return view('doc.create-techsol', compact('techsol'));
     }
 
     public function store(Request $request){
         $validated=$request->validate([
-            'titre'=>'required|string',
+            'titre'=>'nullable|string',
             'description'=>'nullable|string',
-            'software_id' => 'required|exists:software,id',
+            'software_id' => 'required_without:techsol_id|nullable|exists:software,id',
+            'techsol_id' => 'required_without:software_id|nullable|exists:techsols,id',
             'file_path'=>'required|mimes:pdf|max:10240', 
         ]);
 
+        
         if ($request->hasFile('file_path')) {
             $filePath = $request->file('file_path')->store('documentation_pdfs', 'public');
         } else {
@@ -37,23 +45,32 @@ class DocumentController extends Controller
         Document::create([
             'titre' => $validated['titre'],
             'description' => $validated['description'] ?? '', 
-            'software_id' =>  $validated['software_id'],
+            'software_id' =>  $validated['software_id'] ?? null,
+            'techsol_id' => $validated['techsol_id'] ?? null,
             'file_path' => $filePath, 
         ]);
-
-        return redirect()->route('software.show', ['id' => $validated['software_id']])->with('success', 'Documentation ajoutée avec succés');
+        if (isset($validated['software_id'])) {
+            $redirectId = $validated['software_id'];
+            $route = 'software.show';
+        } else {
+            $redirectId = $validated['techsol_id'];
+            $route = 'tech.show';
+        }
+        return redirect()->route($route, ['id' => $redirectId])->with('success', 'Documentation ajoutée avec succés');
     }
     public function edit($id){
         $doc= Document::findOrFail($id);
         $softwares=Software::all();
-        return view('doc.edit', compact('doc', 'softwares'));
+        $techsols = TechSol::all();
+        return view('doc.edit', compact('doc', 'softwares', 'techsols'));
     }
 
 
     public function update(Request $request, $id){
         $validated = $request->validate([
             'software_id' => 'required|exists:software,id',
-            'titre'=>'required|string',
+            'techsol_id' => 'nullable|exists:techsols,id',
+            'titre'=>'nullable|string',
             'description'=>'nullable|string',
             'file_path'=>'nullable|mimes:pdf|max:10240', 
         ]);
@@ -67,16 +84,29 @@ class DocumentController extends Controller
 
     $doc->titre = $validated['titre'];
     $doc->description = $validated['description'] ?? '';
-    $doc->software_id = $validated['software_id'];
+    $doc->software_id = $validated['software_id'] ?? null;
+    $doc->techsol_id = $validated['techsol_id'] ?? null;
     $doc->save();
 
-        return redirect()->route('software.show', ['id' => $validated['software_id']])->with('success', 'Documentation modifié avec succés');
+    $redirectId = $validated['software_id'] ?? $validated['techsol_id'];
+    $route = $validated['software_id'] ? 'software.show' : 'tech.show';
+
+
+        return redirect()->route($route, ['id' => $redirectId])->with('success', 'Documentation modifié avec succés');
     }
 
     public function delete($id){
         $doc=Document::findOrFail($id);
-        $softwareId = $doc->software_id;
+        $redirectId = $doc->software_id ?: $doc->techsol_id;
+
+    // Delete the document
         $doc->delete();
-        return redirect()->route('software.show', ['id' =>$softwareId])->with('Documentation Deleted!');
+
+        // It check if the doc was related to software or techsol and redirect accordingly
+        if ($doc->software_id) {
+            return redirect()->route('software.show', ['id' => $redirectId])->with('success', 'Documentation deleted!');
+        } else {
+            return redirect()->route('tech.show', ['id' => $redirectId])->with('success', 'Documentation deleted!');
+        }
     }
 }

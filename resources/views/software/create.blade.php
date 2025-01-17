@@ -39,18 +39,14 @@
             <div class="form-group">
                 <label for="qualification_statut">Statut de Qualification:</label>
                 <select class="form-control" name="qualification_statut" id="qualification_statut" required>
-                    <option value="" disabled selected>Sélectionnez le statut</option>
-                    <option value="Enattente">En attente</option>
-                    <option value="Qualifié">Qualifié</option>
-                    <option value="Rejeté">Rejeté</option>
-                    <option value="En cours">En cours</option>
-                    <option value="Qualifié avec réserve">Qualifié avec réserve</option>
-                    <option value="Qualifié avec problème connu">Qualifié avec problème connu</option>
+                    <option value="" disabled selected>Select statut</option>
+                    <option value="Qualified">Qualified</option>
+                    <option value="Retired">Rejeté</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="rfc_number">RFC Number:</label>
+                <label for="rfc_number">RITM Number:</label>
                 <input type="text" class="form-control" id="rfc_number" name="rfc_number" placeholder="RFC Number">
             </div>
 
@@ -70,8 +66,8 @@
             </div>
 
             <div class="form-group">
-                <label for="responsable_cit">Responsable C.I.T:</label>
-                <input type="text" class="form-control" id="responsable_cit" name="responsable_cit" placeholder="Responsable C.I.T">
+                <label for="euc">Responsable EUC:</label>
+                <input type="text" class="form-control" id="euc" name="euc" placeholder="Responsable EUC">
             </div>
 
             <div class="form-group">

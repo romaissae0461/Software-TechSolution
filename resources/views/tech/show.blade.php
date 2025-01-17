@@ -31,6 +31,7 @@
                        
                     @endif </p>
                 <p><strong>Source:</strong> {{ $techsols->source }}</p>
+                <p style="background-color: #f0f0f0;"><strong>KB Number:</strong> {{ $techsols->kb_num }}</p>
             </div>
             <div class="col-md-6" style=" padding-top:10px">
                 <p style="background-color: #f0f0f0;"><strong>Update Date:</strong> @if($techsols->update_date)
@@ -62,12 +63,12 @@
 <br>
 <div class="card">
 <div class="card-header text-white" style="background-color: #5f249f">
-        <h4 class="card-title">Documentation <a href="{{ route('doc.create')}}"><i class="fas fa-plus fa-xs" style="color: white;"></i></a></h4>
+        <h4 class="card-title">Documentation for {{$techsols->name}}  <a href="{{ route('doc.create.techsol')}}"><i class="fas fa-plus fa-xs" style="color: white;"></i></a></h4>
     </div>
     @if($documentations->isNotEmpty())
         @foreach($documentations as $documentation)
             <div class="card-body">
-                <p><strong>{{ $documentation->titre }}</strong></p>
+                <!-- <p><strong>{{ $documentation->titre }}</strong></p> -->
                 <p><strong>Description:</strong> {{ $documentation->description }}</p>
                 <p><a href="{{ asset('storage/'.$documentation->file_path) }}" target="_blank" class="btn btn-sm btn-info">
                         View PDF

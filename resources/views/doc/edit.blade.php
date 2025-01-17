@@ -10,10 +10,10 @@
          <form action="{{ route('doc.update', $doc->id) }}" method="POST" enctype="multipart/form-data"> <!--enctype="multipart/form-data" attribute is used in HTML forms when you're uploading files (such as images, documents, or PDFs) to a server. -->
             @csrf
             @method('PUT')
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="titre">Title</label>
-                <input type="text" name="titre" id="titre" class="form-control" value="{{$doc->titre}}" required>
-            </div>
+                <input type="text" name="titre" id="titre" class="form-control" value="{{$doc->titre}}" >
+            </div> -->
 
             <div class="form-group mt-3">
                 <label for="description">Description</label>
@@ -23,9 +23,12 @@
             <div class="form-group mt-3">
                 <label for="file_path">Upload PDF</label>
                 <input type="file" name="file_path" id="file_path" class="form-control" value="{{$doc->file_path}}">
+                @error('file_path')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
                 @if ($doc->file_path)
         <small class="form-text text-muted mt-2">
-            Current File: <a href="{{ asset('storage/' . $doc->file_path) }}" target="_blank">{{ basename($doc->file_path) }}</a>
+            Current File: <a href="{{ asset('storage/' . $doc->file_path) }}" target="_blank">{{ ($doc->titre) }}</a>
         </small>
     @else
         <small class="form-text text-muted mt-2">No file uploaded yet.</small>
