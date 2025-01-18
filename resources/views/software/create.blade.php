@@ -2,7 +2,7 @@
 
 @section('contenu')
     <div class="container">
-        <h1 class="mt-4 mb-4 text-center">Création de fiche Software</h1>
+        <h1 class="mt-4 mb-4 text-center">Add Software Form</h1>
 
         @if($errors->any())
             <div class="alert alert-danger">
@@ -17,41 +17,41 @@
         <form action="{{ route('software.store') }}" method="POST" class="p-4 bg-light rounded shadow" style="min-width: 700px; border: 4px solid #5f249f;">
             @csrf
             <div class="form-group">
-                <label for="name">Nom:</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Nom du logiciel" required>
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Software Name" required>
             </div>
 
             <div class="form-group">
-                <label for="function">Fonction:</label>
-                <input type="text" class="form-control" id="function" name="function" placeholder="Fonction du logiciel" required>
+                <label for="function">Function:</label>
+                <input type="text" class="form-control" id="function" name="function" placeholder="Software Function" required>
             </div>
 
             <div class="form-group">
                 <label for="version">Version:</label>
-                <input type="text" class="form-control" id="version" name="version" placeholder="Version du logiciel" required>
+                <input type="text" class="form-control" id="version" name="version" placeholder="Software Version" required>
             </div>
 
             <div class="form-group">
-                <label for="editor">Éditeur:</label>
-                <input type="text" class="form-control" id="editor" name="editor" placeholder="Nom de l'éditeur" required>
+                <label for="editor">Editor:</label>
+                <input type="text" class="form-control" id="editor" name="editor" placeholder="Software Editor" required>
             </div>
 
             <div class="form-group">
-                <label for="qualification_statut">Statut de Qualification:</label>
+                <label for="qualification_statut">Qualification Statut:</label>
                 <select class="form-control" name="qualification_statut" id="qualification_statut" required>
                     <option value="" disabled selected>Select statut</option>
                     <option value="Qualified">Qualified</option>
-                    <option value="Retired">Rejeté</option>
+                    <option value="Retired">Retired</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="rfc_number">RITM Number:</label>
-                <input type="text" class="form-control" id="rfc_number" name="rfc_number" placeholder="RFC Number">
+                <input type="text" class="form-control" id="rfc_number" name="rfc_number" placeholder="RITM Number">
             </div>
 
             <div class="form-group">
-                <label for="end_of_life">Fin de vie:</label>
+                <label for="end_of_life">End Of Life:</label>
                 <input type="date" class="form-control" id="end_of_life" name="end_of_life">
             </div>
 
@@ -66,18 +66,13 @@
             </div>
 
             <div class="form-group">
-                <label for="euc">Responsable EUC:</label>
-                <input type="text" class="form-control" id="euc" name="euc" placeholder="Responsable EUC">
+                <label for="adm">Responsible ADM:</label>
+                <input type="text" class="form-control" id="adm" name="adm" placeholder="Responsible ADM">
             </div>
 
             <div class="form-group">
-                <label for="adm">Responsable ADM:</label>
-                <input type="text" class="form-control" id="adm" name="adm" placeholder="Responsable ADM">
-            </div>
-
-            <div class="form-group">
-                <label for="mot_clef">Mot Clé:</label>
-                <input type="text" class="form-control" id="mot_clef" name="mot_clef" placeholder="Mot clé">
+                <label for="mot_clef">keywords:</label>
+                <input type="text" class="form-control" id="mot_clef" name="mot_clef" placeholder="keywords">
             </div>
             <div class="form-group">
                 <label for="euc">EUC Technical Engineer</label>
@@ -93,7 +88,7 @@
             </div>
 
             <div class="form-group">
-                <label for="category_id">Category: <a href="{{route('category.create')}}">  Ajouter une categorie</a></label> 
+                <label for="category_id">Category: <a href="{{route('category.create')}}">  Add a category</a></label> 
                 <select name="category_id" id="category_id" class="form-control">
                     <option value="">Select a category</option>
                     @foreach($categories as $category)
@@ -103,7 +98,7 @@
             </div>
 
             <div class="form-group">
-                <label for="service_id">Service:  <a href="{{route('service.create')}}">  Ajouter un service</a>  </label>
+                <label for="service_id">Service:  <a href="{{route('service.create')}}">  Add a service</a>  </label>
                 <select name="service_id" id="service_id" class="form-control">
                     <option value="">Select a service</option>
                     @foreach($services as $service)
@@ -145,28 +140,28 @@
 
             <div class="form-group">
                 <label for="languages">Languages:</label><br>
-                <label for="francais">Français</label>
-                <input type="radio" id="francais_yes" name="languages[francais]" value="Yes"> Oui
-                <input type="radio" id="francais_no" name="languages[francais]" value="No"> Non
+                <label for="francais">French</label>
+                <input type="radio" id="francais_yes" name="languages[francais]" value="Yes"> Yes
+                <input type="radio" id="francais_no" name="languages[francais]" value="No"> No
                 <br>
-                <label for="anglais">Anglais</label>
-                <input type="radio" id="anglais_yes" name="languages[anglais]" value="Yes"> Oui
-                <input type="radio" id="anglais_no" name="languages[anglais]" value="No"> Non
+                <label for="anglais">English</label>
+                <input type="radio" id="anglais_yes" name="languages[anglais]" value="Yes"> Yes
+                <input type="radio" id="anglais_no" name="languages[anglais]" value="No"> No
             </div>
 
             <div class="form-group">
-                <label for="prerequis">Prérequis:</label>
+                <label for="prerequis">Prerequisites:</label>
                 <textarea id="prerequis" name="prerequis" class="form-control" style="resize: both"></textarea>
             </div>
 
             <div class="form-group">
-                <label for="master_integration">Logiciel Intégré au Master:</label>
-                <input type="radio" id="master_integration_yes" name="master_integration" value="1"> Oui
-                <input type="radio" id="master_integration_no" name="master_integration" value="0"> Non
+                <label for="master_integration">Master Integrated Software:</label>
+                <input type="radio" id="master_integration_yes" name="master_integration" value="1"> Yes
+                <input type="radio" id="master_integration_no" name="master_integration" value="0"> No
             </div>
 
             <div class="form-group">
-                <label for="method_installation">Méthode d'installation:</label>
+                <label for="method_installation">Installation Method:</label>
                 <input type="radio" id="method_installation_auto" name="method_installation" value="auto"> Auto
                 <input type="radio" id="method_installation_man" name="method_installation" value="manually"> Manually
             </div>
@@ -177,7 +172,7 @@
             </div>
 
             <div class="form-group">
-                <label for="time_insta">Temps d'installation (en mn):</label>
+                <label for="time_insta">Time of Installation (in min):</label>
                 <input type="number" id="time_insta" name="time_insta" min="0" class="form-control">
             </div>
 
@@ -210,7 +205,8 @@
             </div>
 
             <div class="text-center">
-            <button type="submit" class="btn btn-primary">Créer</button>
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a href="{{route('software.index')}}" class="btn btn-primary">Go Back</a>
         </div>
             </form>
     </div>

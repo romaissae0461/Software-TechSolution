@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'log'),
+    'default' => env('MAIL_MAILER', 'smtp'),
 
     /*
     |--------------------------------------------------------------------------
@@ -37,16 +37,30 @@ return [
 
     'mailers' => [
 
+        'mailer_send' => [
+        'transport' => 'smtp',
+        'host' => 'smtp.mailersend.net',
+        'port' => 587,
+        'username' => env('MAIL_API_KEY'),
+        'password' => env('MAIL_API_KEY'),
+        'encryption' => 'tls',
+    ],
+
         'smtp' => [
             'transport' => 'smtp',
-            'url' => env('MAIL_URL'),
-            'host' => env('MAIL_HOST', '127.0.0.1'),
-            'port' => env('MAIL_PORT', 2525),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
-            'timeout' => null,
-            'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url(env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
+            'host' => env('MAIL_HOST'),
+        'port' => env('MAIL_PORT'),
+        'username' => env('MAIL_USERNAME'),
+        'password' => env('MAIL_PASSWORD'),
+        'encryption' => env('MAIL_ENCRYPTION'),
+            // 'url' => env('MAIL_URL'),
+            // 'host' => env('MAIL_HOST', '127.0.0.1'),
+            // 'port' => env('MAIL_PORT', 2525),
+            // 'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            // 'username' => env('MAIL_USERNAME'),
+            // 'password' => env('MAIL_PASSWORD'),
+            // 'timeout' => null,
+            // 'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url(env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
         ],
 
         'ses' => [
@@ -109,8 +123,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'software.techsol8@softtech.ct.ws'),
+        'name' => env('MAIL_FROM_NAME', 'Software-TechSolut'),
     ],
 
 ];

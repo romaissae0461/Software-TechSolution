@@ -24,7 +24,7 @@
     <div class="news-container mx-auto my-4 p-4">
     <a href="{{ route('news.show', $piece->id)}}" class="news-title d-block text-center font-weight-bold mb-2">{{ $piece->titre }}</a>
         <!-- <h3 class="text-center mb-3">{{$piece->contenu}}</h3> -->
-        <small class="d-block text-right"> Posté Le {{$piece->created_at->format('d,M,Y')}} | Consulté {{$piece->views}} fois</small>
+        <small class="d-block text-right"> Posted on {{$piece->created_at->format('d,M,Y')}} | Viewed {{$piece->views}} times</small>
         <div class="text-center my-4">
             <a href="{{ route('news.edit', $piece->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-xs"></i></a>
             <form action="{{ route('news.delete', $piece->id) }}" method="POST" style="display:inline;">

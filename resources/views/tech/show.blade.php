@@ -8,29 +8,27 @@
     <div class="card-body">
         <div class="d-flex">
             <div class="col-md-6">
-                <div class=" d-flex" style="background-color: #f0f0f0;"><p><strong>Support Informations:</strong> 
+                <div class=" d-flex" style="background-color: #f0f0f0;"><p><strong>Function:</strong> 
                     <div class="col-md-8">{{ $techsols->support_informations }}<br></div></p></div>
                 <p><strong>Version:</strong> {{ $techsols->version }}</p>
                 <p style="background-color: #f0f0f0"><strong>Editor:</strong> {{ $techsols->editor }}</p>
-                <p><strong>Qualification Status:</strong> {{ $techsols->qualification_statut }}</p>
-                <p style="background-color: #f0f0f0"><strong>End of Life:</strong> @if($techsols->end_of_life)
-                    {{ $techsols->end_of_life }}
-                    @else
-                       
-                    @endif
-                </p>
-                <p><strong>O.S Compatibility:</strong> @foreach(explode(',', $techsols->os_compatibility) as $os)
-    <span class="badge badge-info" style="background-color:green;">{{ $os }}</span>
-@endforeach
-</p>
-                <p style="background-color: #f0f0f0;"><strong>Languages:</strong> {{ $techsols->languages }}</p>
-                <p><strong>Prerequisites:</strong> {{ $techsols->prerequis }}</p>
+                <p><strong>Qualification Status:</strong> @if($techsols->qualification_statut === 'Qualifié')
+        Qualified
+    @elseif($techsols->qualification_statut === 'Rejeté')
+        Retired
+    @else
+        {{ $techsols->qualification_statut }}
+    @endif</p>
+                
                 <p style="background-color: #f0f0f0;"><strong>Qualification Date:</strong>@if($techsols->qualification_date)
                     {{ $techsols->qualification_date}}
                     @else
                        
                     @endif </p>
-                <p><strong>Source:</strong> {{ $techsols->source }}</p>
+                <p><strong>O.S Compatibility:</strong> @foreach(explode(',', $techsols->os_compatibility) as $os)
+    <span class="badge badge-info" style="background-color:green;">{{ $os }}</span>
+@endforeach
+</p>
                 <p style="background-color: #f0f0f0;"><strong>KB Number:</strong> {{ $techsols->kb_num }}</p>
             </div>
             <div class="col-md-6" style=" padding-top:10px">
@@ -39,18 +37,12 @@
                     @else
                         
                     @endif</p>
-                <p><strong>Responsible C.I.T:</strong> {{ $techsols->responsable_cit }}</p>
+                <p><strong>Responsible EUC:</strong> {{ $techsols->euc }}</p>
                 <p style="background-color: #f0f0f0;"><strong>Responsible ADM:</strong> {{ $techsols->adm }}</p>
-                <p><strong>Keywords:</strong> {{ $techsols->mot_clef }}</p>
+                <p><strong>keywords:</strong> {{ $techsols->mot_clef }}</p>
                 
             
-                <p style="background-color: #f0f0f0;"><strong>Master Integration:</strong> {{ $techsols->master_integration == 1 ? 'Yes' : 'No' }}</p>
-                <p><strong>Installation Method:</strong> {{ $techsols->method_installation }}</p>
-                <p style="background-color: #f0f0f0;"><strong>Inventory .exe File:</strong>  {{ $techsols->exe_file_path }}</a></p>
-                <p><strong>Complexity:</strong> {{ $techsols->complexity }}</p>
-                <p style="background-color: #f0f0f0;"><strong>ARP Full Name:</strong> {{ $techsols->arp_full_name }}</p>
-                <p><strong>RITM:</strong> {{ $techsols->rfc_number }}</p>
-                <p style="background-color: #f0f0f0;"><strong>Installation Time:</strong> {{ $techsols->time_insta }} minutes</p>
+                <p style="background-color: #f0f0f0;"><strong>RITM:</strong> {{ $techsols->rfc_number }}</p>
             </div>
         </div>
 

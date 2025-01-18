@@ -22,6 +22,11 @@ class Software extends Model
         'master_integration'=>'boolean',//converts it to true/false
         'sms'=>'boolean',
     ];
+
+    protected $attributes = [
+        'time_insta' => 2,
+    ];
+
     public function category(){
         return $this->belongsTo(Category::class);
     }

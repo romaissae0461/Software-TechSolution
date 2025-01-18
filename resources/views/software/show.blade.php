@@ -46,8 +46,8 @@
                 <p><strong>Responsible EUC:</strong> {{ $software->euc }}</p>
                 <p style="background-color: #f0f0f0;"><strong>Responsible ADM:</strong> {{ $software->adm }}</p>
                 <p><strong>Keywords:</strong> {{ $software->mot_clef }}</p>
-                <p style="background-color: #f0f0f0;"><strong>Category:</strong> {{ $software->category->name }}</p>
-                <p><strong>Service:</strong> {{ $software->service->name }}</p>
+                <p style="background-color: #f0f0f0;"><strong>Category:</strong> {{ $software->category->name ?? 'No Category' }}</p>
+                <p><strong>Service:</strong> {{ $software->service->name ?? 'No Service' }}</p>
             
                 <p style="background-color: #f0f0f0;"><strong>Master Integration:</strong> {{ $software->master_integration == 1 ? 'Yes' : 'No' }}</p>
                 <p><strong>Installation Method:</strong> {{ $software->method_installation }}</p>

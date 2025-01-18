@@ -9,13 +9,13 @@
         <thead >
             <tr>
                 <th>Name</th>
-                <th>Support Informations</th>
+                <th>Function</th>
                 <th style="width: 15%;">Actions</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($techsols as $techsol)
-                <tr>
+                <tr class="{{ $techsol->qualification_statut === 'Rejeté' ? 'bg-danger text-white' : '' }}">
                     <td>{{ $techsol->name }}</td>
                     <td>{{ $techsol->support_informations }}</td>
                     <td>

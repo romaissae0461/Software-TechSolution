@@ -64,7 +64,7 @@ class SoftwareController extends Controller
             'method_installation'=>'nullable|in:auto,manually',
             'source'=>'nullable|string',
             // 'sms'=>'nullable|boolean',
-            'time_insta'=>'nullable|integer|min:0',
+            'time_insta'=>'nullable|integer|min:2',
             'arp_full_name'=>'nullable|string',
             'exe_file_path'=>'nullable|string',
             'complexity'=>'nullable|in:Complexe,Moyen,Simple',
@@ -84,6 +84,8 @@ class SoftwareController extends Controller
         
         // this will store the languages as a string separated with a comma
         $validated['languages'] = implode(', ', $languages);
+
+        $validated['time_insta'] = $validated['time_insta'] ?? 2;
 
         if (isset($validated['os_compatibility'])) {
             $validated['os_compatibility'] = implode(', ', $validated['os_compatibility']);
@@ -123,7 +125,7 @@ class SoftwareController extends Controller
             'master_integration'=>'nullable|boolean',
             'method_installation'=>'nullable|in:auto,manually',
             'source'=>'nullable|string',
-            'time_insta'=>'nullable|integer',
+            'time_insta'=>'nullable|integer|min:2',
             'arp_full_name'=>'nullable|string',
             'exe_file_path'=>'nullable|string',
             'complexity'=>'nullable|in:Complexe,Moyen,Simple',
@@ -140,6 +142,8 @@ class SoftwareController extends Controller
                 $languages[] = ucfirst($lang);  // this will add the language to the array if "Yes"
             }
         }
+
+        $validated['time_insta'] = $validated['time_insta'] ?? 2;
 
         // this will store the languages as a string separated with a comma
         $validated['languages'] = implode(', ', $languages);

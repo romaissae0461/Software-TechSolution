@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\News;
+use App\Mail\NewsNotification;
+use Illuminate\Support\Facades\Mail;
 
 class NewsController extends Controller
 {
@@ -31,8 +33,17 @@ class NewsController extends Controller
             'contenu' => 'nullable|string',
         ]);
 
-        News::create($validated);
+        $news = News::create($validated);
 
+        $recipients = [
+            'amina.el-kebbaj@dxc.com',
+            'amina.elkebaj@gmail.com',
+            'romaissaeerrachdi04@gmail.com',
+        ];
+
+        foreach ($recipients as $recipient) {
+            Mail::to($recipient)->send(new NewsNotification($news));
+        }
         return redirect()->route('home')->with('success', 'News added successfully!');
     }
 

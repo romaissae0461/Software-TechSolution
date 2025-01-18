@@ -3,7 +3,7 @@
 @section('cont')
 <div class="card">
     <div class="card-header text-white" style="background-color: #5f249f">
-        <h4 class="card-title">Modifier Documentation</h4>
+        <h4 class="card-title">Edit Documentation</h4>
     </div>
 
     <div class="card-body">
@@ -48,7 +48,7 @@
             </div>
 
             <div class="form-group mt-3 text-center">
-                <button type="submit" class="btn btn-success">Modifier Documentation</button>
+                <button type="submit" class="btn btn-success">Update Documentation</button>
             </div>
         </form>
     </div>

@@ -100,7 +100,7 @@
         </div>
 
         <div class="form-group d-flex">
-            <label for="mot_clef" class="col-sm-2 col-form-label">Keyword: </label>
+            <label for="mot_clef" class="col-sm-2 col-form-label">keywords: </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="mot_clef" name="mot_clef" value="{{ $softwares->mot_clef }}">
             </div>
@@ -182,15 +182,15 @@ If the language is not found, the other radio button will be checked -->
 
                 <label for="francais">French</label>
                 <input type="radio" id="francais_yes" name="languages[francais]" value="Yes" 
-                    {{ strpos($softwares->languages, 'Français') !== false ? 'checked' : '' }}> Oui
+                    {{ strpos($softwares->languages, 'Français') !== false ? 'checked' : '' }}> Yes
                 <input type="radio" id="francais_no" name="languages[francais]" value="No" 
-                    {{ strpos($softwares->languages, 'Français') === false ? 'checked' : '' }}> Non <br>
+                    {{ strpos($softwares->languages, 'Français') === false ? 'checked' : '' }}> No <br>
 
                 <label for="anglais">English</label>
                 <input type="radio" id="anglais_yes" name="languages[anglais]" value="Yes" 
-                    {{ strpos($softwares->languages, 'Anglais') !== false ? 'checked' : '' }}> Oui
+                    {{ strpos($softwares->languages, 'Anglais') !== false ? 'checked' : '' }}> Yes
                 <input type="radio" id="anglais_no" name="languages[anglais]" value="No" 
-                    {{ strpos($softwares->languages, 'Anglais') === false ? 'checked' : '' }}> Non <br>
+                    {{ strpos($softwares->languages, 'Anglais') === false ? 'checked' : '' }}> No <br>
             </div>
         </div>
         <div class="form-group d-flex">
@@ -203,8 +203,8 @@ If the language is not found, the other radio button will be checked -->
         <div class="form-group d-flex">
             <label for="master_integration" class="col-sm-2 col-form-label">Master Integrated Software:</label>
             <div class="col-sm-10">
-                <input type="radio" id="master_integration_yes" name="master_integration" value="1" {{ $softwares->master_integration == '1' ? 'checked' : '' }}> Oui
-                <input type="radio" id="master_integration_no" name="master_integration" value="0" {{ $softwares->master_integration == '0' ? 'checked' : '' }}> Non <br>
+                <input type="radio" id="master_integration_yes" name="master_integration" value="1" {{ $softwares->master_integration == '1' ? 'checked' : '' }}> Yes
+                <input type="radio" id="master_integration_no" name="master_integration" value="0" {{ $softwares->master_integration == '0' ? 'checked' : '' }}> No <br>
             </div>
         </div>
 
@@ -282,7 +282,7 @@ If the language is not found, the other radio button will be checked -->
 
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Update</button>
-            <a href="{{route('software.index')}}" class="btn btn-primary">Retour</a>
+            <a href="{{route('software.index')}}" class="btn btn-primary">Go Back</a>
         </div>
 
     </form>
