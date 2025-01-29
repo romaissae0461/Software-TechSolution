@@ -107,6 +107,13 @@
         </div>
 
         <div class="form-group d-flex">
+                <label for="comment" class="col-sm-2 col-form-label">Comment:</label>
+                <div class="col-sm-10">
+                <textarea class="form-control" id="comment" name="comment"style="resize: both"> {{ $softwares->comment }}</textarea>
+            </div>
+        </div>
+
+        <div class="form-group d-flex">
             <label for="category_id" class="col-sm-2 col-form-label">Category: </label>
             <div class="col-sm-10">
                 <select name="category_id" class="form-control" id="category_id">
@@ -120,18 +127,6 @@
             </div>
         </div>
 
-        <div class="form-group d-flex">
-            <label for="service_id" class="col-sm-2 col-form-label">Service: </label>
-            <div class="col-sm-10">
-                <select name="service_id" class="form-control" id="service_id">
-                    <option value="">Select a service</option>
-                    @foreach($services as $service)
-                        <option value="{{$service->id}}" {{$softwares->service_id == $service->id ? 'selected' : ''}}>
-                            {{$service->name}}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
 
         <div class="form-group">
                 <label>O.S Compatibility:</label>
@@ -266,19 +261,18 @@ If the language is not found, the other radio button will be checked -->
             </select><br>
             </div>
         </div>
-
+        
+        
         <div class="form-group d-flex">
-            <label for="criticite" class="col-sm-2 col-form-label">criticite:</label>
+            <label for="criticite" class="col-sm-2 col-form-label">criticality:</label>
             <div class="col-sm-10">
-            <select name="criticite"  class="form-control" id="criticite" value="{{ $softwares->criticite }}" >
-                <option value="Simple" {{$softwares->complexity == 'Simple' ? 'selected' : ''}}>Simple</option>
-                <option value="Moyen" {{$softwares->complexity == 'Moyen' ? 'selected' : ''}}>Moyen</option>
-                <option value="Complexe" {{$softwares->complexity == 'Complexe' ? 'selected' : ''}}>Complexe</option>
+            <select name="criticite" class="form-control"  id="criticite" value="{{ $softwares->criticite }}" >
+                <option value="Simple" {{$softwares->criticite == 'Simple' ? 'selected' : ''}}>Simple</option>
+                <option value="Moyen" {{$softwares->criticite == 'Moyen' ? 'selected' : ''}}>Moyen</option>
+                <option value="Complexe" {{$softwares->criticite == 'Complexe' ? 'selected' : ''}}>Complexe</option>
             </select><br>
             </div>
         </div>
-
-
 
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Update</button>

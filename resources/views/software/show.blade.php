@@ -3,7 +3,8 @@
 
 <div class="card">
     <div class="card-header text-white" style="background-color: #5f249f">
-        <h4 class="card-title">{{ $software->name }}</h4>
+        <h4 class="card-title d-flex justify-content-between">{{ $software->name }} <div class="text-right"><a href="{{ route('software.edit', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a></div>
+        </h4>
     </div>
     <div class="card-body">
         <div class="d-flex">
@@ -36,6 +37,9 @@
                     @endif </p>
                 <p><strong>Source:</strong> {{ $software->source }}</p>
                 <p style="background-color: #f0f0f0;"><strong>KB Number:</strong> {{ $software->kb_num }}</p>
+                <p><strong>RITM:</strong> {{ $software->rfc_number }}</p>
+                <p style="background-color: #f0f0f0;"><strong>Installation Time:</strong> {{ $software->time_insta }} minutes</p>
+                <p><strong>Comment:</strong> {{ $software->comment }}</p>
             </div>
             <div class="col-md-6" style=" padding-top:10px">
                 <p style="background-color: #f0f0f0;"><strong>Update Date:</strong> @if($software->update_date)
@@ -47,19 +51,17 @@
                 <p style="background-color: #f0f0f0;"><strong>Responsible ADM:</strong> {{ $software->adm }}</p>
                 <p><strong>Keywords:</strong> {{ $software->mot_clef }}</p>
                 <p style="background-color: #f0f0f0;"><strong>Category:</strong> {{ $software->category->name ?? 'No Category' }}</p>
-                <p><strong>Service:</strong> {{ $software->service->name ?? 'No Service' }}</p>
             
-                <p style="background-color: #f0f0f0;"><strong>Master Integration:</strong> {{ $software->master_integration == 1 ? 'Yes' : 'No' }}</p>
-                <p><strong>Installation Method:</strong> {{ $software->method_installation }}</p>
-                <p style="background-color: #f0f0f0;"><strong>Inventory .exe File:</strong>  {{ $software->exe_file_path }}</a></p>
-                <p><strong>Complexity:</strong> {{ $software->complexity }}</p>
-                <p style="background-color: #f0f0f0;"><strong>ARP Full Name:</strong> {{ $software->arp_full_name }}</p>
-                <p><strong>RITM:</strong> {{ $software->rfc_number }}</p>
-                <p style="background-color: #f0f0f0;"><strong>Installation Time:</strong> {{ $software->time_insta }} minutes</p>
+                <p><strong>Master Integration:</strong> {{ $software->master_integration == 1 ? 'Yes' : 'No' }}</p>
+                <p style="background-color: #f0f0f0;"><strong>Installation Method:</strong> {{ $software->method_installation }}</p>
+                <p><strong>Inventory .exe File:</strong>  {{ $software->exe_file_path }}</a></p>
+                <p style="background-color: #f0f0f0;"><strong>Complexity:</strong> {{ $software->complexity }}</p>
+                <p><strong>Criticality:</strong> {{ $software->criticite }}</p>
+                <p  style="background-color: #f0f0f0;"><strong>ARP Full Name:</strong> {{ $software->arp_full_name }}</p>
+                
             </div>
         </div>
         <div class="text-right">
-            <a href="{{ route('software.edit', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a> <br>
         </div>
     </div>
 </div>

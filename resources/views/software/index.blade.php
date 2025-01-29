@@ -2,7 +2,7 @@
 @section('cont')
 
 <h1>Software List <a href="{{ route('software.create')}}"><i class="fas fa-plus fa-xs" style="color: #5f249f;"></i></a></h1>
-
+<h6><small style="color:red;">*The red color indicates that the software is Retired</small></h6>
   
 @if($softwares->isNotEmpty())
 <div class="table-responsive">

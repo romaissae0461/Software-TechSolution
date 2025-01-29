@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Software;
 use App\Models\Category;
-use App\Models\Service;
 use App\Models\TechSol;
 use App\Models\SupportLevel;
 use App\Models\Document;
@@ -23,21 +22,19 @@ class SoftwareController extends Controller
     {
         $software = Software::findOrFail($id);
         $categories = Category::all();
-        $services = Service::all();
         $documentations = Document::where('software_id', $id)->get();
-        return view('software.show', compact('software','categories','services', 'documentations'));
+        return view('software.show', compact('software','categories', 'documentations'));
     }
 
     public function create(){
         $categories = Category::all();
-        $services = Service::all();
-        //  it prevents the view from being loaded when the required data ($categories and $services) are missing with a message (of creating) if there is no data
+        //  it prevents the view from being loaded when the required data ($categories) are missing with a message (of creating) if there is no data
         // +without it the error msg $categories not found will be generated
-        if ($categories->isEmpty() || $services->isEmpty()) {
-            return redirect()->route('software.create')->with('error', 'Please create categories and services first.');
+        if ($categories->isEmpty()) {
+            return redirect()->route('software.create')->with('error', 'Please create categories first.');
         }
     
-        return view('software.create', compact('categories','services'));
+        return view('software.create', compact('categories'));
     }
 
     public function store(Request $request){
@@ -55,7 +52,6 @@ class SoftwareController extends Controller
             'adm'=>'nullable|string',
             'mot_clef'=>'nullable|string',
             'category_id'=>'nullable|exists:categories,id',
-            'service_id'=>'nullable|exists:services,id', 
             'os_compatibility'=>'nullable|array',
             'os_compatibility.*' => 'string|in:Windows 10,Windows 11,Windows 11/10,Android,iOS',
             'languages'=>'nullable|array',
@@ -71,6 +67,7 @@ class SoftwareController extends Controller
             'criticite'=>'nullable|in:Complexe,Moyen,Simple',
             'prerequis'=>'nullable|string',
             'euc' => 'nullable|string',
+            'euc.*' => 'string|in:Amina ELKEBBAJ,Zakaria EL IDRISSI,Ahmed Amine EL AOUIRI,Radouane FARIK,Mourad AIDA,Mohamed Imad Eddine AISSOUF',
             'kb_num' => 'nullable|string',
             'comment' => 'nullable|string',
         ]);
@@ -98,8 +95,8 @@ class SoftwareController extends Controller
     public function edit($id){
         $softwares= Software::findOrFail($id);
         $categories = Category::all();
-        $services = Service::all();
-        return view('software.edit', compact('softwares', 'categories', 'services'));
+        
+        return view('software.edit', compact('softwares', 'categories'));
     }
 
 
@@ -118,7 +115,6 @@ class SoftwareController extends Controller
             'adm'=>'nullable|string',
             'mot_clef'=>'nullable|string',
             'category_id'=>'nullable|exists:categories,id',
-            'service_id'=>'nullable|exists:services,id', 
             'os_compatibility'=>'nullable|array',
             'os_compatibility.*' => 'string|in:Windows 10,Windows 11,Windows 11/10,Android,iOS',
             'languages'=>'nullable|array',
@@ -132,6 +128,7 @@ class SoftwareController extends Controller
             'criticite'=>'nullable|in:Complexe,Moyen,Simple',
             'prerequis'=>'nullable|string',
             'euc' => 'nullable|string',
+            'euc.*' => 'string|in:Amina ELKEBBAJ,Zakaria EL IDRISSI,Ahmed Amine EL AOUIRI,Radouane FARIK,Mourad AIDA,Mohamed Imad Eddine AISSOUF',
             'kb_num' => 'nullable|string',
             'comment' => 'nullable|string',
         ]);
@@ -152,6 +149,11 @@ class SoftwareController extends Controller
         if (isset($validated['os_compatibility'])) {
             $validated['os_compatibility'] = implode(', ', $validated['os_compatibility']);
         }
+        
+        if (isset($validated['euc'])) {
+            $validated['euc'] = implode(', ', $validated['euc']);
+        }
+        
         $validated['languages'] = implode(', ', $languages);
 
     
@@ -189,8 +191,19 @@ class SoftwareController extends Controller
     public function search(Request $request){
         $keyword = $request->input('keyword');
 
-        $softwares = Software::where('mot_clef', 'LIKE', '%' . $keyword . '%')->get();
+        $softwareQuery = Software::query();
+        $techSolQuery = TechSol::query();
 
-        return view('software.search', compact('softwares', 'keyword'));
+        if ($keyword) {
+            $softwareQuery->where('mot_clef', 'LIKE', '%' . $keyword . '%');
+            $techSolQuery->where('mot_clef', 'LIKE', '%' . $keyword . '%');
+        }
+    
+        $softwares = $softwareQuery->orderBy('name')->get();
+        $techSols = $techSolQuery->orderBy('name')->get();
+
+        // $softwares = Software::where('mot_clef', 'LIKE', '%' . $keyword . '%')->get();
+
+        return view('software.search', compact('softwares', 'techSols' , 'keyword'));
     }
 }

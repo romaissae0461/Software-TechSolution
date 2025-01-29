@@ -76,8 +76,17 @@
             </div>
             <div class="form-group">
                 <label for="euc">EUC Technical Engineer</label>
-                <input type="text" class="form-control" id="euc" name="euc" placeholder="EUC Responsible">
+                <select class="form-control" name="euc" id="euc">
+                    <option value="" disabled selected>Select Responsible EUC </option>
+                    <option value="euc[]">Amina ELKEBBAJ</option>
+                    <option value="euc[]">Zakaria EL IDRISSI</option>
+                    <option value="euc[]">Ahmed Amine EL AOUIRI</option>
+                    <option value="euc[]">Radouane FARIK</option>
+                    <option value="euc[]">Mourad AIDA</option>
+                    <option value="euc[]">Mohamed Imad Eddine AISSOUF</option>
+                </select>
             </div>
+            
             <div class="form-group">
                 <label for="kb_num">KB Number</label>
                 <input type="text" class="form-control" id="kb_num" name="kb_num" placeholder="N° KB ServiceNow">
@@ -97,15 +106,6 @@
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="service_id">Service:  <a href="{{route('service.create')}}">  Add a service</a>  </label>
-                <select name="service_id" id="service_id" class="form-control">
-                    <option value="">Select a service</option>
-                    @foreach($services as $service)
-                        <option value="{{$service->id}}">{{$service->name}}</option>
-                    @endforeach
-                </select>
-            </div>
 
             <div class="form-group">
                 <label>O.S Compatibility:</label>
@@ -196,7 +196,7 @@
             </div>
 
             <div class="form-group">
-                <label for="criticite">Criticité:</label>
+                <label for="criticite">Criticality:</label>
                 <select name="criticite" id="criticite" class="form-control">
                     <option value="Simple">Simple</option>
                     <option value="Moyen">Moyen</option>

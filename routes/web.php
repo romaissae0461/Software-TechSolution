@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SoftwareController;
 use App\Http\Controllers\NewsController;
@@ -8,6 +9,8 @@ use App\Http\Controllers\SupportLevelController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\EucProcessController;
+use App\Http\Controllers\MasterAutoPilotController;
 
 
 // Route::get('/', function () {
@@ -27,7 +30,7 @@ Route::delete('/software/{id}', [SoftwareController::class, 'delete'])->name('so
 Route::get('/software/search', [SoftwareController::class, 'search'])->name('software.search');
 
 //News
-Route::get('/', [NewsController::class, 'index'])->name('home');
+Route::get('/news', [NewsController::class, 'index'])->name('home');
 Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
 Route::post('/news', [NewsController::class, 'store'])->name('news.store');
 Route::get('/news/edit/{id}', [NewsController::class, 'edit'])->name('news.edit');
@@ -71,3 +74,34 @@ Route::post('/doc/store',[DocumentController::class, 'store'])->name('doc.store'
 Route::get('/doc/edit/{id}', [DocumentController::class, 'edit'])->name('doc.edit');
 Route::put('/doc/edit/{id}', [DocumentController::class, 'update'])->name('doc.update');
 Route::delete('/doc/delete/{id}', [DocumentController::class, 'delete'])->name('doc.delete');
+
+//euc
+Route::get('/euc/index',[EucProcessController::class, 'index'])->name('euc.index');
+Route::get('/euc/create',[EucProcessController::class, 'create'])->name('euc.create');
+Route::post('/euc/store',[EucProcessController::class, 'store'])->name('euc.store');
+Route::get('/euc/edit/{id}', [EucProcessController::class, 'edit'])->name('euc.edit');
+Route::put('/euc/edit/{id}', [EucProcessController::class, 'update'])->name('euc.update');
+Route::get('/euc/show/{id}', [EucProcessController::class, 'show'])->name('euc.show');
+Route::delete('/euc/delete/{id}', [EucProcessController::class, 'delete'])->name('euc.delete');
+
+//Master
+Route::get('/autopilot/index',[MasterAutoPilotController::class, 'index'])->name('autopilot.index');
+Route::get('/autopilot/create',[MasterAutoPilotController::class, 'create'])->name('autopilot.create');
+Route::post('/autopilot/store',[MasterAutoPilotController::class, 'store'])->name('autopilot.store');
+Route::get('/autopilot/edit/{id}', [MasterAutoPilotController::class, 'edit'])->name('autopilot.edit');
+Route::put('/autopilot/edit/{id}', [MasterAutoPilotController::class, 'update'])->name('autopilot.update');
+Route::get('/autopilot/show/{id}', [MasterAutoPilotController::class, 'show'])->name('autopilot.show');
+Route::delete('/autopilot/delete/{id}', [MasterAutoPilotController::class, 'delete'])->name('autopilot.delete');
+
+//auth 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

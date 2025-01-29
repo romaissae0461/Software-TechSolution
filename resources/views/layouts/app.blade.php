@@ -26,11 +26,12 @@
                     </div>
                 </header>
             @endisset
-
+@section('cont')
             <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>
         </div>
+        @endsection
     </body>
 </html>

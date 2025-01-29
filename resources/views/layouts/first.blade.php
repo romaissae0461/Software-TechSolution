@@ -155,20 +155,25 @@
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <strong class="fs-5 d-none d-sm-inline">{{ \Carbon\Carbon::now()->format('l, F j, Y') }}
-</strong>
+                    <strong class="fs-5 d-none d-sm-inline">{{ \Carbon\Carbon::now()->format('l, F j, Y') }}</strong>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
-                        <a href="/" class="nav-link align-middle px-0">
+                        <a href="{{route('dashboard')}}" class="nav-link align-middle px-0">
                             <i class="fas fa-home"></i>  
-                            <span class="ms-1 d-none d-sm-inline">Home</span>
+                            <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('home')}}" class="nav-link align-middle px-0">
+                            <i class="fas fa-newspaper"></i> 
+                            <span class="ms-1 d-none d-sm-inline">News</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('software.index') }}" class="nav-link align-middle px-0">
                             <i class="fas fa-laptop-code"></i> 
-                            <span class="badge badge-primary ml-2">{{ $softwareCount }}</span>
+                            <span class="badge badge-success ml-2">{{ $softwareCount }}</span>
                             <span class="ms-1 d-none d-sm-inline">Software</span>
                         </a>
                     </li>
@@ -179,16 +184,44 @@
                             <span class="ms-1 d-none d-sm-inline">Tech Solutions</span>
                         </a>
                     </li>
+
+
+                    <li class="nav-item">
+                        <a href="{{ route('euc.index') }}" class="nav-link align-middle px-0">
+                            <i class="fas fa-cogs"></i>  
+                            <span class="badge badge-success ml-2">{{ $eucCount }}</span>
+                            <span class="ms-1 d-none d-sm-inline">EUC Process</span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a href="{{ route('autopilot.index') }}" class="nav-link align-middle px-0">
+                            <i class="fas fa-cogs"></i> 
+                            <span class="badge badge-success ml-2">{{ $autopilotCount }}</span>
+                            <span class="ms-1 d-none d-sm-inline">Master SCCM / Autopilot intune</span>
+                        </a>
+                    </li>
                    
                 </ul>
                 
                   <!-- Alphabet Links -->
-    <div style="display: grid; grid-template-columns: repeat(10, auto); gap: 5px; max-width: 100%; ">
-        @foreach (range('A', 'Z') as $letter)
-            <a href="{{ route('alphabet.search', $letter) }}" class="text-center" style="color:white; ">{{ $letter }}</a>
-        @endforeach
-    </div>
+                <div style="display: grid; grid-template-columns: repeat(10, auto); gap: 5px; max-width: 100%; ">
+                    @foreach (range('A', 'Z') as $letter)
+                        <a href="{{ route('alphabet.search', $letter) }}" class="text-center" style="color:white; ">{{ $letter }}</a>
+                    @endforeach
+                </div>
     
+                <footer style="padding: 10px 20px; position: fixed;bottom: 0;width: 20%;">
+                    <form id="profile-form" action="{{ route('profile.edit') }}" method="GET">
+                        @csrf
+                        <button type="submit" style="background: none; border: none; color:white; font-size:20px;"><i class="fas fa-user"></i> Profile</button>
+                    </form>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" style="background: none; border: none; color:white; font-size:20px;"><i class="fas fa-sign-out-alt"></i> Log Out</button>
+                    </form>
+                </footer>
             </div>
         </div>
         <div class="col py-3">
@@ -199,6 +232,7 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
             
+              
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                 
@@ -217,6 +251,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </body>
 </html>

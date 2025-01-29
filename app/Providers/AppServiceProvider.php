@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Software;
 use App\Models\TechSol;
+use App\Models\EucProcess;
+use App\Models\MasterAutoPilot;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -22,10 +24,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        
         view()->composer('*', function ($view) {
+            $keyword = request('keyword');
+
             $softwareCount = Software::count();
             $techSolCount = TechSol::count(); 
-            $view->with(['softwareCount' => $softwareCount,'techSolCount' => $techSolCount]);
+            $eucCount = EucProcess::count(); 
+            $autopilotCount = MasterAutoPilot::count(); 
+            $softkeyCount = Software::where('mot_clef', 'LIKE', '%' . $keyword . '%')->count();
+            $techkeyCount = TechSol::where('mot_clef', 'LIKE', '%' . $keyword . '%')->count(); 
+            $view->with(['softwareCount' => $softwareCount,'techSolCount' => $techSolCount, 'softkeyCount' => $softkeyCount,'techkeyCount' => $techkeyCount, 'eucCount' => $eucCount, 'autopilotCount' => $autopilotCount]);
         });
     }
 }

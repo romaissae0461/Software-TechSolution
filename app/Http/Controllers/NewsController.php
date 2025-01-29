@@ -36,13 +36,13 @@ class NewsController extends Controller
         $news = News::create($validated);
 
         $recipients = [
-            'amina.el-kebbaj@dxc.com',
             'amina.elkebaj@gmail.com',
+            'romaissae.errachdi@usmba.ac.ma',
             'romaissaeerrachdi04@gmail.com',
         ];
 
         foreach ($recipients as $recipient) {
-            Mail::to($recipient)->send(new NewsNotification($news));
+            Mail::to($recipient)->queue(new NewsNotification($news));
         }
         return redirect()->route('home')->with('success', 'News added successfully!');
     }

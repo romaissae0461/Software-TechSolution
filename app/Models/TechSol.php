@@ -13,7 +13,7 @@ class TechSol extends Model
     protected $table = 'techsols';
     protected $fillable= ['name', 'support_informations','version', 'editor', 'qualification_statut', 'rfc_number', 
     'end_of_life', 'qualification_date', 'update_date', 'responsable_cit', 'adm', 'mot_clef','category_id', 
-    'service_id', 'os_compatibility', 'languages', 'master_integration', 'type', 'method_installation', 
+     'os_compatibility', 'languages', 'master_integration', 'type', 'method_installation', 
     'source', 'sms', 'time_insta', 'arp_full_name', 'exe_file_path', 'complexity', 'criticite', 'prerequis'];
 
     public function documentations()

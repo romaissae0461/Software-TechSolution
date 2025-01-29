@@ -46,6 +46,9 @@
             </div>
         </div>
 
+        <div class="text-right">
+            <a href="{{ route('tech.edit', $techsols->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a> <br>
+        </div>
     </div>
 </div>
 
@@ -55,7 +58,7 @@
 <br>
 <div class="card">
 <div class="card-header text-white" style="background-color: #5f249f">
-        <h4 class="card-title">Documentation for {{$techsols->name}}  <a href="{{ route('doc.create.techsol')}}"><i class="fas fa-plus fa-xs" style="color: white;"></i></a></h4>
+        <h5 class="card-title">Documentation for {{$techsols->name}}  <a href="{{ route('doc.create.techsol')}}"><i class="fas fa-plus fa-xs" style="color: white;"></i></a></h5>
     </div>
     @if($documentations->isNotEmpty())
         @foreach($documentations as $documentation)
