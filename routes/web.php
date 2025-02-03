@@ -72,6 +72,7 @@ Route::get('/doc/create',[DocumentController::class, 'create'])->name('doc.creat
 Route::get('/doc/create/techsol', [DocumentController::class, 'createForTechSol'])->name('doc.create.techsol');
 Route::post('/doc/store',[DocumentController::class, 'store'])->name('doc.store');
 Route::get('/doc/edit/{id}', [DocumentController::class, 'edit'])->name('doc.edit');
+Route::get('/doc/edit/techsol/{id}', [DocumentController::class, 'editForTechSol'])->name('doc.edit.techsol');
 Route::put('/doc/edit/{id}', [DocumentController::class, 'update'])->name('doc.update');
 Route::delete('/doc/delete/{id}', [DocumentController::class, 'delete'])->name('doc.delete');
 

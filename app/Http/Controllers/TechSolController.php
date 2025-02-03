@@ -30,7 +30,7 @@ class TechSolController extends Controller
             'support_informations' => 'nullable|string',
             'version'=>'nullable|string',
             'editor'=>'nullable|string',
-            'qualification_statut'=>'nullable|in:Enattente,Qualifié,Rejeté,En cours,Qualifié avec réserve,Qualifié avec problème connu', //it can't be enum, it's either string or in and write options
+            'qualification_statut'=>'nullable|in:Qualified,Retired', //it can't be enum, it's either string or in and write options
             'rfc_number'=>'nullable|string',
             'end_of_life'=>'nullable|date',
             'qualification_date'=>'nullable|date',
@@ -84,7 +84,7 @@ class TechSolController extends Controller
             'support_informations' => 'nullable|string',
             'version'=>'nullable|string',
             'editor'=>'nullable|string',
-            'qualification_statut'=>'nullable|in:Enattente,Qualifié,Rejeté,En cours,Qualifié avec réserve,Qualifié avec problème connu', //it can't be enum, it's either string or in and write options
+            'qualification_statut'=>'nullable|in:Qualified,Retired', //it can't be enum, it's either string or in and write options
             'rfc_number'=>'nullable|string',
             'end_of_life'=>'nullable|date',
             'qualification_date'=>'nullable|date',

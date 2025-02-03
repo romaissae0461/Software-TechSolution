@@ -73,7 +73,7 @@
                     <strong>Created: </strong>{{ $documentation->created_at->format('d, M, Y') }} <strong> at </strong>{{ $documentation->created_at->format('H:i') }}
                 </p>
                 <div class="text-right">
-                <a href="{{ route('doc.edit', $documentation->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a>
+                <a href="{{ route('doc.edit.techsol', $documentation->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a>
                     <form action="{{ route('doc.delete', $documentation->id) }}" method="POST" style="display:inline; ">
                         @csrf
                         @method('DELETE')

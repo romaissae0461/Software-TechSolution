@@ -14,9 +14,7 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = ['Development Tools', 'Production', 'Utilities', 'Business/Enterprise', 
-            'Design and Creativity', 'Gaming', 'Security', 'Media and Communication', 
-            'Scientific and Engineering', 'Healthcare', 'Cloud/Virtualization'];
+        $categories = ['DTI / Production / ITDS, FWI, SYSOP / CCO SGAT', 'DTI', 'Production', 'ITDS, FWI, SYSOP', 'CCO SGAT'];
         foreach ($categories as $category){
             Category::create(['name' => $category]);
         }

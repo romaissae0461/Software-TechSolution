@@ -217,6 +217,10 @@
                         @csrf
                         <button type="submit" style="background: none; border: none; color:white; font-size:20px;"><i class="fas fa-user"></i> Profile</button>
                     </form>
+                    <form id="register-form" action="{{ route('register') }}" method="GET">
+                        @csrf
+                        <button type="submit" style="background: none; border: none; color:white; font-size:20px;"><i class="fas fa-user"></i> Register</button>
+                    </form>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" style="background: none; border: none; color:white; font-size:20px;"><i class="fas fa-sign-out-alt"></i> Log Out</button>

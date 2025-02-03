@@ -61,15 +61,20 @@ class DocumentController extends Controller
     public function edit($id){
         $doc= Document::findOrFail($id);
         $softwares=Software::all();
-        $techsols = TechSol::all();
-        return view('doc.edit', compact('doc', 'softwares', 'techsols'));
+        //$techsols = TechSol::all();
+        return view('doc.edit', compact('doc', 'softwares'));
     }
 
+    public function editForTechSol($id) {
+        $doc= Document::findOrFail($id);
+        $techsols = TechSol::all();
+        return view('doc.edit-techsol', compact('doc', 'techsols'));
+    }
 
     public function update(Request $request, $id){
         $validated = $request->validate([
-            'software_id' => 'required|exists:software,id',
-            'techsol_id' => 'nullable|exists:techsols,id',
+            'software_id' => 'required_without:techsol_id|nullable|exists:software,id',
+            'techsol_id' => 'required_without:software_id|nullable|exists:techsols,id',
             'titre'=>'nullable|string',
             'description'=>'nullable|string',
             'file_path'=>'nullable|mimes:pdf|max:10240', 
@@ -88,10 +93,16 @@ class DocumentController extends Controller
     $doc->techsol_id = $validated['techsol_id'] ?? null;
     $doc->save();
 
-    $redirectId = $validated['software_id'] ?? $validated['techsol_id'];
-    $route = $validated['software_id'] ? 'software.show' : 'tech.show';
+    // $redirectId = $validated['software_id'] ?? $validated['techsol_id'];
+    // $route = $validated['software_id'] ? 'software.show' : 'tech.show';
 
-
+    if (isset($validated['software_id'])) {
+        $redirectId = $validated['software_id'];
+        $route = 'software.show';
+    } else {
+        $redirectId = $validated['techsol_id'];
+        $route = 'tech.show';
+    }
         return redirect()->route($route, ['id' => $redirectId])->with('success', 'Documentation modifié avec succés');
     }
 

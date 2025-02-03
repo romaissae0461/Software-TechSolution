@@ -14,6 +14,7 @@ class NewsSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::statement('ALTER TABLE news AUTO_INCREMENT = 1;');
         DB::table('news')->insert([
             [
                 'titre'=>'Maintenance système',

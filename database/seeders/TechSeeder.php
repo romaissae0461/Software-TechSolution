@@ -15,6 +15,7 @@ class TechSeeder extends Seeder
     public function run(): void
     {
         //DB::table('techsols')->truncate();
+        DB::statement('ALTER TABLE techsols AUTO_INCREMENT = 1;');
         DB::table('techsols')->insert([
             //MDM
             [
@@ -22,7 +23,7 @@ class TechSeeder extends Seeder
                 'support_informations' => 'MDM enables organizations to secure, monitor, and manage the use of mobile devices used by employees.',
                 'version' => 'null',
                 'editor' => 'null',
-                'qualification_statut' => 'Qualifié',
+                'qualification_statut' => 'Qualified',
                 'rfc_number' => 'null',
                 'end_of_life' => '2050-01-01',
                 'qualification_date' => '2024-07-29',
@@ -39,7 +40,7 @@ class TechSeeder extends Seeder
                 'method_installation' => 'auto',
                 'source' => 'Software Center',
                 'sms' => false,
-                'time_insta' => 45,
+                'time_insta' => 2,
                 'arp_full_name' => 'MDM',
                 'exe_file_path' => 'MDMSetup.exe',
                 'complexity' => 'Simple',
@@ -56,7 +57,7 @@ class TechSeeder extends Seeder
                 'support_informations' => 'S/4HANA is an advanced ERP system designed to run on the SAP HANA in-memory database. The deployment of the Quartz theme enhances the user interface, providing a modernized, consistent design across applications.',
                 'version' => 'null',
                 'editor' => 'SAP',
-                'qualification_statut' => 'Qualifié',
+                'qualification_statut' => 'Qualified',
                 'rfc_number' => 'RITM0110387',
                 'end_of_life' => '2050-01-01',
                 'qualification_date' => '2024-06-25',
@@ -73,7 +74,7 @@ class TechSeeder extends Seeder
                 'method_installation' => 'auto',
                 'source' => 'Software Center',
                 'sms' => false,
-                'time_insta' => 45,
+                'time_insta' => 2,
                 'arp_full_name' => 'S/4HANA',
                 'exe_file_path' => 'S/4HANASetup.exe',
                 'complexity' => 'Moyen',
@@ -90,7 +91,7 @@ class TechSeeder extends Seeder
                 'support_informations' => 'Content Player software designed to manage and play multimedia content for digital signage applications, replacing version 5.4 with version 6.4 for enhanced features.',
                 'version' => '6.4',
                 'editor' => 'Content Player',
-                'qualification_statut' => 'Qualifié',
+                'qualification_statut' => 'Qualified',
                 'rfc_number' => 'RITM0112101',
                 'end_of_life' => '2050-01-01',
                 'qualification_date' => '2024-10-09',
@@ -107,7 +108,7 @@ class TechSeeder extends Seeder
                 'method_installation' => 'auto',
                 'source' => 'Software Center',
                 'sms' => false,
-                'time_insta' => 45,
+                'time_insta' => 2,
                 'arp_full_name' => 'Content Player 6.4',
                 'exe_file_path' => 'ContentPlayer6_4Setup.exe',
                 'complexity' => 'Simple',
@@ -124,7 +125,7 @@ class TechSeeder extends Seeder
                 'support_informations' => 'This script modifies the Windows registry to adjust the SecurityLevel key, disabling certain security statuses in SAP Logon.',
                 'version' => '6.4',
                 'editor' => 'Content Player',
-                'qualification_statut' => 'Qualifié',
+                'qualification_statut' => 'Qualified',
                 'rfc_number' => 'RITM0112101',
                 'end_of_life' => '2050-01-01',
                 'qualification_date' => '2024-10-09',
@@ -141,7 +142,7 @@ class TechSeeder extends Seeder
                 'method_installation' => 'auto',
                 'source' => 'Software Center',
                 'sms' => false,
-                'time_insta' => 45,
+                'time_insta' => 2,
                 'arp_full_name' => 'Content Player 6.4',
                 'exe_file_path' => 'ContentPlayer6_4Setup.exe',
                 'complexity' => 'Simple',

@@ -150,9 +150,9 @@ class SoftwareController extends Controller
             $validated['os_compatibility'] = implode(', ', $validated['os_compatibility']);
         }
         
-        if (isset($validated['euc'])) {
-            $validated['euc'] = implode(', ', $validated['euc']);
-        }
+        // if (isset($validated['euc'])) {
+        //     $validated['euc'] = implode(', ', $validated['euc']);
+        // }
         
         $validated['languages'] = implode(', ', $languages);
 
