@@ -20,7 +20,9 @@ class TechSolController extends Controller
     }
 
     public function create(){
+        if(auth()->user()->hasRole('admin')){
         return view('tech.create');
+        }
     }
 
     public function store(Request $request)
@@ -73,8 +75,10 @@ class TechSolController extends Controller
     }
 
     public function edit($id){
+        if(auth()->user()->hasRole('admin')){
         $techsols= TechSol::findOrFail($id);
         return view('tech.edit', compact('techsols'));
+        }
     }
 
 
@@ -121,8 +125,10 @@ class TechSolController extends Controller
     }
 
     public function delete($id){
+        if(auth()->user()->hasRole('admin')){
         $techsols=TechSol::findOrFail($id);
         $techsols->delete();
         return redirect()->route('tech.index')->with('Technology Solution Deleted!');
+        }
     }
 }

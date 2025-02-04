@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             SoftwareSeeder::class,
             NewsSeeder::class,
             TechSeeder::class,
+            RoleSeeder::class,
         ]);
     }
 }

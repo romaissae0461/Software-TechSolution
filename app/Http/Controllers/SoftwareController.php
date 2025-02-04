@@ -27,6 +27,7 @@ class SoftwareController extends Controller
     }
 
     public function create(){
+        if(auth()->user()->hasRole('admin')){
         $categories = Category::all();
         //  it prevents the view from being loaded when the required data ($categories) are missing with a message (of creating) if there is no data
         // +without it the error msg $categories not found will be generated
@@ -35,6 +36,7 @@ class SoftwareController extends Controller
         }
     
         return view('software.create', compact('categories'));
+        }
     }
 
     public function store(Request $request){
@@ -93,10 +95,12 @@ class SoftwareController extends Controller
     }
 
     public function edit($id){
+        if(auth()->user()->hasRole('admin')){
         $softwares= Software::findOrFail($id);
         $categories = Category::all();
         
         return view('software.edit', compact('softwares', 'categories'));
+        }
     }
 
 
@@ -163,9 +167,11 @@ class SoftwareController extends Controller
     }
 
     public function delete($id){
+        if(auth()->user()->hasRole('admin')){
         $software=Software::findOrFail($id);
         $software->delete();
         return redirect()->route('software.index')->with('Software Deleted!');
+        }
     }
 
 

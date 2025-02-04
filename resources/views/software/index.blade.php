@@ -1,7 +1,11 @@
 @extends('layouts.first')
 @section('cont')
 
-<h1>Software List <a href="{{ route('software.create')}}"><i class="fas fa-plus fa-xs" style="color: #5f249f;"></i></a></h1>
+<h1>Software List 
+@if(auth()->user()->hasRole('admin'))
+<a href="{{ route('software.create')}}">
+    <i class="fas fa-plus fa-xs" style="color: #5f249f;"></i></a>
+@endif</h1>
 <h6><small style="color:red;">*The red color indicates that the software is Retired</small></h6>
   
 @if($softwares->isNotEmpty())
@@ -27,12 +31,14 @@
                         <td>{{ $software->rfc_number }}</td>
                         <td>
                             <a href="{{ route('software.show', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-info-circle fa-lg"></i></a> <br>
+                            @if(auth()->user()->hasRole('admin'))
                             <a href="{{ route('software.edit', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a> <br>
                             <form action="{{ route('software.delete', $software->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this software?')"><i class="fas fa-trash fa-lg"></i></button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                     

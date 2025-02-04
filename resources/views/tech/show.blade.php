@@ -3,7 +3,13 @@
 
 <div class="card">
     <div class="card-header text-white" style="background-color: #5f249f">
-        <h4 class="card-title">{{ $techsols->name }}</h4>
+        <h4 class="card-title">{{ $techsols->name }}
+        @if(auth()->user()->hasRole('admin'))
+            <div class="text-right">
+                <a href="{{ route('tech.edit', $techsols->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a> <br>
+            </div>
+        @endif
+        </h4>
     </div>
     <div class="card-body">
         <div class="d-flex">
@@ -46,9 +52,7 @@
             </div>
         </div>
 
-        <div class="text-right">
-            <a href="{{ route('tech.edit', $techsols->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a> <br>
-        </div>
+        
     </div>
 </div>
 
@@ -57,8 +61,12 @@
     </div>
 <br>
 <div class="card">
-<div class="card-header text-white" style="background-color: #5f249f">
-        <h5 class="card-title">Documentation for {{$techsols->name}}  <a href="{{ route('doc.create.techsol')}}"><i class="fas fa-plus fa-xs" style="color: white;"></i></a></h5>
+    <div class="card-header text-white" style="background-color: #5f249f">
+        <h5 class="card-title">Documentation for {{$techsols->name}}  
+        @if(auth()->user()->hasRole('admin'))
+        <a href="{{ route('doc.create.techsol')}}"><i class="fas fa-plus fa-xs" style="color: white;"></i></a>
+        @endif
+        </h5>
     </div>
     @if($documentations->isNotEmpty())
         @foreach($documentations as $documentation)
@@ -73,12 +81,14 @@
                     <strong>Created: </strong>{{ $documentation->created_at->format('d, M, Y') }} <strong> at </strong>{{ $documentation->created_at->format('H:i') }}
                 </p>
                 <div class="text-right">
-                <a href="{{ route('doc.edit.techsol', $documentation->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a>
-                    <form action="{{ route('doc.delete', $documentation->id) }}" method="POST" style="display:inline; ">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this documentation?')"><i class="fas fa-trash fa-lg"></i></button>
-                    </form>
+                    @if(auth()->user()->hasRole('admin'))
+                        <a href="{{ route('doc.edit.techsol', $documentation->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a>
+                        <form action="{{ route('doc.delete', $documentation->id) }}" method="POST" style="display:inline; ">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this documentation?')"><i class="fas fa-trash fa-lg"></i></button>
+                        </form>
+                    @endif
                 </div>
             </div>
         @endforeach

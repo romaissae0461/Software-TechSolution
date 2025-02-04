@@ -153,7 +153,7 @@
 <div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100" style="position:fixed; width: 200px;">
                 <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <strong class="fs-5 d-none d-sm-inline">{{ \Carbon\Carbon::now()->format('l, F j, Y') }}</strong>
                 </a>
@@ -217,10 +217,12 @@
                         @csrf
                         <button type="submit" style="background: none; border: none; color:white; font-size:20px;"><i class="fas fa-user"></i> Profile</button>
                     </form>
+                    @if(auth()->user()->hasRole('admin'))
                     <form id="register-form" action="{{ route('register') }}" method="GET">
                         @csrf
                         <button type="submit" style="background: none; border: none; color:white; font-size:20px;"><i class="fas fa-user"></i> Register</button>
                     </form>
+                    @endif
                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" style="background: none; border: none; color:white; font-size:20px;"><i class="fas fa-sign-out-alt"></i> Log Out</button>

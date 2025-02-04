@@ -23,7 +23,9 @@ class NewsController extends Controller
 
     public function create()
     {
+        if(auth()->user()->hasRole('admin')){
         return view('news.create');
+        }
     }
 
     public function store(Request $request)
@@ -48,8 +50,10 @@ class NewsController extends Controller
     }
 
     public function edit($id){
+        if(auth()->user()->hasRole('admin')){
         $news= News::findOrFail($id);
         return view('news.edit', compact('news'));
+        }
     }
 
 
@@ -65,9 +69,11 @@ class NewsController extends Controller
     }
 
     public function delete($id){
+        if(auth()->user()->hasRole('admin')){
         $news=News::findOrFail($id);
         $news->delete();
         return redirect()->route('home')->with('Piece of news Deleted!');
+        }
     }
 
     

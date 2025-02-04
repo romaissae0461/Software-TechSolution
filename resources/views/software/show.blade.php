@@ -3,7 +3,11 @@
 
 <div class="card">
     <div class="card-header text-white" style="background-color: #5f249f">
-        <h4 class="card-title d-flex justify-content-between">{{ $software->name }} <div class="text-right"><a href="{{ route('software.edit', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a></div>
+        <h4 class="card-title d-flex justify-content-between">{{ $software->name }} <div class="text-right">
+        @if(auth()->user()->hasRole('admin'))
+        <a href="{{ route('software.edit', $software->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a>
+        @endif
+    </div>
         </h4>
     </div>
     <div class="card-body">
@@ -72,7 +76,11 @@
 <br>
 <div class="card">
 <div class="card-header text-white" style="background-color: #5f249f">
-        <h4 class="card-title">Documentation for {{$software->name}}  <a href="{{ route('doc.create')}}"><i class="fas fa-plus fa-xs" style="color: white;"></i></a></h4>
+        <h4 class="card-title">Documentation for {{$software->name}} 
+        @if(auth()->user()->hasRole('admin'))
+        <a href="{{ route('doc.create')}}"><i class="fas fa-plus fa-xs" style="color: white;"></i></a>
+        @endif
+        </h4>
     </div>
     @if($documentations->isNotEmpty())
         @foreach($documentations as $documentation)
@@ -87,12 +95,14 @@
                     <strong>Created: </strong>{{ $documentation->created_at->format('d, M, Y') }} <strong> at </strong>{{ $documentation->created_at->format('H:i') }}
                 </p>
                 <div class="text-right">
+                @if(auth()->user()->hasRole('admin'))
                 <a href="{{ route('doc.edit', $documentation->id) }}"class="btn btn-primary btn-sm"><i class="fas fa-edit fa-lg"></i></a>
                     <form action="{{ route('doc.delete', $documentation->id) }}" method="POST" style="display:inline; ">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this documentation?')"><i class="fas fa-trash fa-lg"></i></button>
                     </form>
+                @endif
                 </div>
             </div>
         @endforeach

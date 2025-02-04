@@ -18,7 +18,9 @@ class MasterAutoPilotController extends Controller
     }
 
     public function create(){    
+        if(auth()->user()->hasRole('admin')){
         return view('autopilot.create');
+        }
     }
 
     public function store(Request $request){
@@ -49,8 +51,10 @@ class MasterAutoPilotController extends Controller
     }
 
     public function edit($id){
+        if(auth()->user()->hasRole('admin')){
         $autopilot= MasterAutoPilot::findOrFail($id);        
         return view('autopilot.edit', compact('autopilot'));
+        }
     }
 
 
@@ -66,14 +70,26 @@ class MasterAutoPilotController extends Controller
         ]);
     
         $autopilot=MasterAutoPilot::findOrFail($id);
-        $autopilot->update($validated);
+        if ($request->hasFile('filemaster')) {
+            $fileMaster = $request->file('filemaster')->store('autopilot_pdfs', 'public'); // this will store the file in public storage
+        } 
+        $autopilot->update(
+            ['name' => $validated['name'],
+        'function' => $validated['function'], 
+        'update_date' =>  $validated['update_date'],
+        'ritm' => $validated['ritm'],
+        'euc' => $validated['euc'],
+        'filemaster' => $fileMaster, ]
+        );
         return redirect()->route('autopilot.index')->with('success', 'Process updated successflly!');
     }
 
     public function delete($id){
+        if(auth()->user()->hasRole('admin')){
         $autopilot=MasterAutoPilot::findOrFail($id);
         $autopilot->delete();
         return redirect()->route('autopilot.index')->with('autopilot Process Deleted!');
+        }
     }
    
 }

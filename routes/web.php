@@ -17,83 +17,90 @@ use App\Http\Controllers\MasterAutoPilotController;
 //     return view('welcome');
 // });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/index', [SoftwareController::class, 'index'])->name('software.index');
 
-Route::get('/index', [SoftwareController::class, 'index'])->name('software.index');
+    Route::get('/addsoftware', [SoftwareController::class, 'create'])
+        ->middleware('role:admin')
+        ->name('software.create');
+    Route::post('/store', [SoftwareController::class, 'store'])
+        ->middleware('role:admin')
+        ->name('software.store');
+    Route::get('/alphabet/{letter?}', [SoftwareController::class, 'alphabetically'])->name('alphabet.search');
+    Route::get('/edit/{id}', [SoftwareController::class, 'edit'])
+        ->middleware('role:admin')
+        ->name('software.edit');
+    Route::put('/edit/{id}', [SoftwareController::class, 'update']) 
+        ->middleware('role:admin')->name('software.update');
+    Route::get('/show/{id}', [SoftwareController::class, 'show'])->name('software.show');
+    Route::delete('/software/{id}', [SoftwareController::class, 'delete'])->middleware('role:admin')->name('software.delete');
+    Route::get('/software/search', [SoftwareController::class, 'search'])->name('software.search');
 
-Route::get('/addsoftware', [SoftwareController::class, 'create'])->name('software.create');
-Route::post('/store', [SoftwareController::class, 'store'])->name('software.store');
-Route::get('/alphabet/{letter?}', [SoftwareController::class, 'alphabetically'])->name('alphabet.search');
-Route::get('/edit/{id}', [SoftwareController::class, 'edit'])->name('software.edit');
-Route::put('/edit/{id}', [SoftwareController::class, 'update'])->name('software.update');
-Route::get('/show/{id}', [SoftwareController::class, 'show'])->name('software.show');
-Route::delete('/software/{id}', [SoftwareController::class, 'delete'])->name('software.delete');
-Route::get('/software/search', [SoftwareController::class, 'search'])->name('software.search');
-
-//News
-Route::get('/news', [NewsController::class, 'index'])->name('home');
-Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
-Route::post('/news', [NewsController::class, 'store'])->name('news.store');
-Route::get('/news/edit/{id}', [NewsController::class, 'edit'])->name('news.edit');
-Route::put('/news/update/{id}', [NewsController::class, 'update'])->name('news.update');
-Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
-Route::delete('/news/delete/{id}', [NewsController::class, 'delete'])->name('news.delete');
-
-
-
-//TechSol
-Route::get('/tech/index', [TechSolController::class, 'index'])->name('tech.index');
-Route::get('/tech/create', [TechSolController::class, 'create'])->name('tech.create');
-Route::post('/tech/store', [TechSolController::class, 'store'])->name('tech.store');
-Route::get('/tech/edit/{id}', [TechSolController::class, 'edit'])->name('tech.edit');
-Route::put('/tech/edit/{id}', [TechSolController::class, 'update'])->name('tech.update');
-Route::get('/tech/{id}', [TechSolController::class, 'show'])->name('tech.show');
-Route::delete('/tech/delete/{id}', [TechSolController::class, 'delete'])->name('tech.delete');
-
-//Support Level
-Route::get('/support_levels/create', [SupportLevelController::class, 'create'])->name('suplev.create');
-Route::post('/support_levels/create', [SupportLevelController::class, 'store'])->name('suplev.store');
-Route::get('/support_levels/edit/{id}', [SupportLevelController::class, 'edit'])->name('suplev.edit');
-Route::put('/support_levels/edit/{id}', [SupportLevelController::class, 'update'])->name('suplev.update');
-Route::post('/support_levels/delete/{id}', [SupportLevelController::class, 'delete'])->name('suplev.delete');
+    //News
+    Route::get('/news', [NewsController::class, 'index'])->name('home');
+    Route::get('/news/create', [NewsController::class, 'create'])->middleware('role:admin')->name('news.create');
+    Route::post('/news', [NewsController::class, 'store'])->middleware('role:admin')->name('news.store');
+    Route::get('/news/edit/{id}', [NewsController::class, 'edit'])->middleware('role:admin')->name('news.edit');
+    Route::put('/news/update/{id}', [NewsController::class, 'update'])->middleware('role:admin')->name('news.update');
+    Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
+    Route::delete('/news/delete/{id}', [NewsController::class, 'delete'])->middleware('role:admin')->name('news.delete');
 
 
-//Category
-Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
-Route::post('/category/create', [CategoryController::class, 'store'])->name('category.store');
+
+    //TechSol
+    Route::get('/tech/index', [TechSolController::class, 'index'])->name('tech.index');
+    Route::get('/tech/create', [TechSolController::class, 'create'])->middleware('role:admin')->name('tech.create');
+    Route::post('/tech/store', [TechSolController::class, 'store'])->middleware('role:admin')->name('tech.store');
+    Route::get('/tech/edit/{id}', [TechSolController::class, 'edit'])->middleware('role:admin')->name('tech.edit');
+    Route::put('/tech/edit/{id}', [TechSolController::class, 'update'])->middleware('role:admin')->name('tech.update');
+    Route::get('/tech/{id}', [TechSolController::class, 'show'])->name('tech.show');
+    Route::delete('/tech/delete/{id}', [TechSolController::class, 'delete'])->middleware('role:admin')->name('tech.delete');
+
+    //Support Level
+    Route::get('/support_levels/create', [SupportLevelController::class, 'create'])->name('suplev.create');
+    Route::post('/support_levels/create', [SupportLevelController::class, 'store'])->name('suplev.store');
+    Route::get('/support_levels/edit/{id}', [SupportLevelController::class, 'edit'])->name('suplev.edit');
+    Route::put('/support_levels/edit/{id}', [SupportLevelController::class, 'update'])->name('suplev.update');
+    Route::post('/support_levels/delete/{id}', [SupportLevelController::class, 'delete'])->name('suplev.delete');
 
 
-//Service
-Route::get('/service/create', [ServiceController::class, 'create'])->name('service.create');
-Route::post('/service/create', [ServiceController::class, 'store'])->name('service.store');
+    //Category
+    Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('/category/create', [CategoryController::class, 'store'])->name('category.store');
 
 
-// Documentation
-Route::get('/doc/create',[DocumentController::class, 'create'])->name('doc.create');
-Route::get('/doc/create/techsol', [DocumentController::class, 'createForTechSol'])->name('doc.create.techsol');
-Route::post('/doc/store',[DocumentController::class, 'store'])->name('doc.store');
-Route::get('/doc/edit/{id}', [DocumentController::class, 'edit'])->name('doc.edit');
-Route::get('/doc/edit/techsol/{id}', [DocumentController::class, 'editForTechSol'])->name('doc.edit.techsol');
-Route::put('/doc/edit/{id}', [DocumentController::class, 'update'])->name('doc.update');
-Route::delete('/doc/delete/{id}', [DocumentController::class, 'delete'])->name('doc.delete');
+    //Service
+    Route::get('/service/create', [ServiceController::class, 'create'])->name('service.create');
+    Route::post('/service/create', [ServiceController::class, 'store'])->name('service.store');
 
-//euc
-Route::get('/euc/index',[EucProcessController::class, 'index'])->name('euc.index');
-Route::get('/euc/create',[EucProcessController::class, 'create'])->name('euc.create');
-Route::post('/euc/store',[EucProcessController::class, 'store'])->name('euc.store');
-Route::get('/euc/edit/{id}', [EucProcessController::class, 'edit'])->name('euc.edit');
-Route::put('/euc/edit/{id}', [EucProcessController::class, 'update'])->name('euc.update');
-Route::get('/euc/show/{id}', [EucProcessController::class, 'show'])->name('euc.show');
-Route::delete('/euc/delete/{id}', [EucProcessController::class, 'delete'])->name('euc.delete');
 
-//Master
-Route::get('/autopilot/index',[MasterAutoPilotController::class, 'index'])->name('autopilot.index');
-Route::get('/autopilot/create',[MasterAutoPilotController::class, 'create'])->name('autopilot.create');
-Route::post('/autopilot/store',[MasterAutoPilotController::class, 'store'])->name('autopilot.store');
-Route::get('/autopilot/edit/{id}', [MasterAutoPilotController::class, 'edit'])->name('autopilot.edit');
-Route::put('/autopilot/edit/{id}', [MasterAutoPilotController::class, 'update'])->name('autopilot.update');
-Route::get('/autopilot/show/{id}', [MasterAutoPilotController::class, 'show'])->name('autopilot.show');
-Route::delete('/autopilot/delete/{id}', [MasterAutoPilotController::class, 'delete'])->name('autopilot.delete');
+    // Documentation
+    Route::get('/doc/create',[DocumentController::class, 'create'])->middleware('role:admin')->name('doc.create');
+    Route::get('/doc/create/techsol', [DocumentController::class, 'createForTechSol'])->middleware('role:admin')->name('doc.create.techsol');
+    Route::post('/doc/store',[DocumentController::class, 'store'])->middleware('role:admin')->name('doc.store');
+    Route::get('/doc/edit/{id}', [DocumentController::class, 'edit'])->middleware('role:admin')->name('doc.edit');
+    Route::get('/doc/edit/techsol/{id}', [DocumentController::class, 'editForTechSol'])->middleware('role:admin')->name('doc.edit.techsol');
+    Route::put('/doc/edit/{id}', [DocumentController::class, 'update'])->middleware('role:admin')->name('doc.update');
+    Route::delete('/doc/delete/{id}', [DocumentController::class, 'delete'])->middleware('role:admin')->name('doc.delete');
 
+    //euc
+    Route::get('/euc/index',[EucProcessController::class, 'index'])->name('euc.index');
+    Route::get('/euc/create',[EucProcessController::class, 'create'])->middleware('role:admin')->name('euc.create');
+    Route::post('/euc/store',[EucProcessController::class, 'store'])->middleware('role:admin')->name('euc.store');
+    Route::get('/euc/edit/{id}', [EucProcessController::class, 'edit'])->middleware('role:admin')->name('euc.edit');
+    Route::put('/euc/edit/{id}', [EucProcessController::class, 'update'])->middleware('role:admin')->name('euc.update');
+    Route::get('/euc/show/{id}', [EucProcessController::class, 'show'])->name('euc.show');
+    Route::delete('/euc/delete/{id}', [EucProcessController::class, 'delete'])->middleware('role:admin')->name('euc.delete');
+
+    //Master
+    Route::get('/autopilot/index',[MasterAutoPilotController::class, 'index'])->name('autopilot.index');
+    Route::get('/autopilot/create',[MasterAutoPilotController::class, 'create'])->middleware('role:admin')->name('autopilot.create');
+    Route::post('/autopilot/store',[MasterAutoPilotController::class, 'store'])->middleware('role:admin')->name('autopilot.store');
+    Route::get('/autopilot/edit/{id}', [MasterAutoPilotController::class, 'edit'])->middleware('role:admin')->name('autopilot.edit');
+    Route::put('/autopilot/edit/{id}', [MasterAutoPilotController::class, 'update'])->middleware('role:admin')->name('autopilot.update');
+    Route::get('/autopilot/show/{id}', [MasterAutoPilotController::class, 'show'])->name('autopilot.show');
+    Route::delete('/autopilot/delete/{id}', [MasterAutoPilotController::class, 'delete'])->middleware('role:admin')->name('autopilot.delete');
+});
 //auth 
 Route::get('/dashboard', function () {
     return view('dashboard');

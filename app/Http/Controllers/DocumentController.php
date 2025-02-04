@@ -16,14 +16,18 @@ class DocumentController extends Controller
     //For Software 
 
     public function create(){
+        if(auth()->user()->hasRole('admin')){
         $softwares = Software::all();
         return view('doc.create', compact('softwares'));
+        }
     }
     
     // For Tech Solution
     public function createForTechSol() {
+        if(auth()->user()->hasRole('admin')){
         $techsol = TechSol::all();
         return view('doc.create-techsol', compact('techsol'));
+        }
     }
 
     public function store(Request $request){
@@ -59,16 +63,20 @@ class DocumentController extends Controller
         return redirect()->route($route, ['id' => $redirectId])->with('success', 'Documentation ajoutée avec succés');
     }
     public function edit($id){
+        if(auth()->user()->hasRole('admin')){
         $doc= Document::findOrFail($id);
         $softwares=Software::all();
         //$techsols = TechSol::all();
         return view('doc.edit', compact('doc', 'softwares'));
+        }
     }
 
     public function editForTechSol($id) {
+        if(auth()->user()->hasRole('admin')){
         $doc= Document::findOrFail($id);
         $techsols = TechSol::all();
         return view('doc.edit-techsol', compact('doc', 'techsols'));
+        }
     }
 
     public function update(Request $request, $id){
@@ -107,17 +115,19 @@ class DocumentController extends Controller
     }
 
     public function delete($id){
-        $doc=Document::findOrFail($id);
-        $redirectId = $doc->software_id ?: $doc->techsol_id;
+        if(auth()->user()->hasRole('admin')){
+            $doc=Document::findOrFail($id);
+            $redirectId = $doc->software_id ?: $doc->techsol_id;
 
-    // Delete the document
-        $doc->delete();
+        // Delete the document
+            $doc->delete();
 
-        // It check if the doc was related to software or techsol and redirect accordingly
-        if ($doc->software_id) {
-            return redirect()->route('software.show', ['id' => $redirectId])->with('success', 'Documentation deleted!');
-        } else {
-            return redirect()->route('tech.show', ['id' => $redirectId])->with('success', 'Documentation deleted!');
+            // It check if the doc was related to software or techsol and redirect accordingly
+            if ($doc->software_id) {
+                return redirect()->route('software.show', ['id' => $redirectId])->with('success', 'Documentation deleted!');
+            } else {
+                return redirect()->route('tech.show', ['id' => $redirectId])->with('success', 'Documentation deleted!');
+            }
         }
     }
 }

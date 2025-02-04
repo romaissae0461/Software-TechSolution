@@ -67,21 +67,21 @@
         <div class="form-group d-flex">
             <label for="end_of_life" class="col-sm-2 col-form-label">End Of Life: </label>
             <div class="col-sm-10">
-                <input type="date" class="form-control" id="end_of_life" name="end_of_life" value="{{ $softwares->end_of_life }}">
+                <input type="date" class="form-control" id="end_of_life" name="end_of_life" value="{{ $softwares->end_of_life ? \Carbon\Carbon::parse($softwares->end_of_life)->format('Y-m-d') : ''}}">
             </div>
         </div>
 
         <div class="form-group d-flex">
             <label for="qualification_date" class="col-sm-2 col-form-label">Qualification date:</label>
             <div class="col-sm-10">
-                <input type="date" class="form-control" id="qualification_date" name="qualification_date" value="{{ $softwares->qualification_date }}">
+                <input type="date" class="form-control" id="qualification_date" name="qualification_date" value="{{ $softwares->qualification_date ? \Carbon\Carbon::parse($softwares->qualification_date)->format('Y-m-d') : ''}}">
             </div>
         </div>
 
         <div class="form-group d-flex">
             <label for="update_date" class="col-sm-2 col-form-label">Update date: </label>
             <div class="col-sm-10">
-                <input type="date" class="form-control" id="update_date" name="update_date" value="{{ $softwares->update_date }}">
+                <input type="date" class="form-control" id="update_date" name="update_date" value="{{ $softwares->update_date ? \Carbon\Carbon::parse($softwares->update_date)->format('Y-m-d') : ''}}">
             </div>
         </div>
 

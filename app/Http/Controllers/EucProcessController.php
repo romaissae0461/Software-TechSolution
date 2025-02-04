@@ -18,8 +18,10 @@ class EucProcessController extends Controller
         return view('euc.show', compact('euc'));
     }
 
-    public function create(){    
+    public function create(){ 
+        if(auth()->user()->hasRole('admin')){   
         return view('euc.create');
+        }
     }
 
     public function store(Request $request){
@@ -42,8 +44,10 @@ class EucProcessController extends Controller
     }
 
     public function edit($id){
+        if(auth()->user()->hasRole('admin')){
         $euc= EucProcess::findOrFail($id);        
         return view('euc.edit', compact('euc'));
+        }
     }
 
 
@@ -54,14 +58,24 @@ class EucProcessController extends Controller
         ]);
     
         $euc=EucProcess::findOrFail($id);
-        $euc->update($validated);
+        $euc->name=$validated['name'];
+        if ($request->hasFile('file_chem')) {
+            $fileChem = $request->file('file_chem')->store('euc_pdfs', 'public');
+            $euc->file_chem = $fileChem;
+        } else {
+            $fileChem = null;
+        }
+
+        $euc->save();
         return redirect()->route('euc.index')->with('success', 'Process updated successflly!');
     }
 
     public function delete($id){
+        if(auth()->user()->hasRole('admin')){
         $euc=EucProcess::findOrFail($id);
         $euc->delete();
         return redirect()->route('euc.index')->with('EUC Process Deleted!');
+        }
     }
    
 }
