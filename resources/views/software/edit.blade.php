@@ -88,7 +88,15 @@
         <div class="form-group d-flex">
             <label for="euc" class="col-sm-2 col-form-label">EUC Manager: </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="euc" name="euc" value="{{ $softwares->euc }}">
+            <select class="form-control" name="euc" id="euc">
+            <option value="">{{ $softwares->euc }}</option>
+                <option value="Amina ELKEBBAJ" {{$softwares->euc == 'Amina ELKEBBAJ' ? 'selected' : ''}}>Amina ELKEBBAJ</option>
+                <option value="Zakaria EL IDRISSI" {{$softwares->euc == 'Zakaria EL IDRISSI' ? 'selected' : ''}}>Zakaria EL IDRISSI</option>
+                <option value="Ahmed Amine EL AOUIRI" {{$softwares->euc == 'Ahmed Amine EL AOUIRI' ? 'selected' : ''}}>Ahmed Amine EL AOUIRI</option>
+                <option value="Radouane FARIK" {{$softwares->euc == 'Radouane FARIK' ? 'selected' : ''}}>Radouane FARIK</option>
+                <option value="Mourad AIDA" {{$softwares->euc == 'Mourad AIDA' ? 'selected' : ''}}>Mourad AIDA</option>
+                <option value="Mohamed Imad Eddine AISSOUF" {{$softwares->euc == 'Mohamed Imad Eddine AISSOUF' ? 'selected' : ''}}>Mohamed Imad Eddine AISSOUF</option>
+            </select>
             </div>
         </div>
 
@@ -126,11 +134,11 @@
                 </select>
             </div>
         </div>
+<br>
 
-
-        <div class="form-group">
-                <label>O.S Compatibility:</label>
-                <div class="form-control">
+        <div class="form-group d-flex">
+                <label for="os_compatibility" class="col-sm-2 col-form-label" style="margin-right:15px;">O.S Compatibility:</label>
+                <div class="form-control col-xs-9">
                 <div>
     <label>
         <input type="checkbox" name="os_compatibility[]" value="Windows 10" 
@@ -167,27 +175,28 @@
     </label>
                 </div>
             </div>
+            </div>
 
         <div class="form-group d-flex">
-            <label for="languages" class="col-sm-2 col-form-label">Languages: </label>
-            <div class="col-sm-10">
+            <label for="languages" class="col-sm-2 col-form-label">Languages:</label>
+            <div class="col-sm-10"><br>
                 <!-- The strpos function checks if the language is found in the languages string. If the language is found, 
 the corresponding radio button will be checked (checked).
 If the language is not found, the other radio button will be checked -->
 
-                <label for="francais">French</label>
-                <input type="radio" id="francais_yes" name="languages[francais]" value="Yes" 
-                    {{ strpos($softwares->languages, 'Français') !== false ? 'checked' : '' }}> Yes
-                <input type="radio" id="francais_no" name="languages[francais]" value="No" 
-                    {{ strpos($softwares->languages, 'Français') === false ? 'checked' : '' }}> No <br>
+                <label for="francais" style="margin-right: 200px;">French</label>
+                <input type="radio" id="francais_yes" name="languages[french]" value="Yes" 
+                    {{ strpos($softwares->languages, 'French') !== false ? 'checked' : '' }}> Yes
+                <input type="radio" style="margin-left: 200px;" id="francais_no" name="languages[french]" value="No" 
+                    {{ strpos($softwares->languages, 'French') === false ? 'checked' : '' }}> No <br>
 
-                <label for="anglais">English</label>
-                <input type="radio" id="anglais_yes" name="languages[anglais]" value="Yes" 
-                    {{ strpos($softwares->languages, 'Anglais') !== false ? 'checked' : '' }}> Yes
-                <input type="radio" id="anglais_no" name="languages[anglais]" value="No" 
-                    {{ strpos($softwares->languages, 'Anglais') === false ? 'checked' : '' }}> No <br>
+                <label for="anglais" style="margin-right: 200px;">English</label>
+                <input type="radio" id="anglais_yes" name="languages[english]" value="Yes" 
+                    {{ strpos($softwares->languages, 'English') !== false ? 'checked' : '' }}> Yes
+                <input type="radio" style="margin-left: 200px;" id="anglais_no" name="languages[english]" value="No" 
+                    {{ strpos($softwares->languages, 'English') === false ? 'checked' : '' }}> No <br>
             </div>
-        </div>
+        </div><br>
         <div class="form-group d-flex">
             <label for="prerequis" class="col-sm-2 col-form-label">Prerequisite:</label> 
             <div class="col-sm-10">
@@ -196,23 +205,19 @@ If the language is not found, the other radio button will be checked -->
         </div>
 
         <div class="form-group d-flex">
-            <label for="master_integration" class="col-sm-2 col-form-label">Master Integrated Software:</label>
-            <div class="col-sm-10">
+            <label for="master_integration"  class="col-sm-4 col-form-label">Master Integrated Software:</label>
+            <div class="col-sm-8">
                 <input type="radio" id="master_integration_yes" name="master_integration" value="1" {{ $softwares->master_integration == '1' ? 'checked' : '' }}> Yes
-                <input type="radio" id="master_integration_no" name="master_integration" value="0" {{ $softwares->master_integration == '0' ? 'checked' : '' }}> No <br>
+                <input type="radio" style="margin-left: 200px;" id="master_integration_no" name="master_integration" value="0" {{ $softwares->master_integration == '0' ? 'checked' : '' }}> No <br>
             </div>
         </div>
-
-        <!-- <label for="type">Courant/isolé</label>
-        <input type="radio" id="type_courant" name="type" value="courant"> Courant
-        <input type="radio" id="type_isole" name="type" value="isolé"> Isolé <br>
-         -->
+<br>
 
         <div class="form-group d-flex">
-            <label for="method_installation" class="col-sm-2 col-form-label">Installation Method:</label>
-            <div class="col-sm-10">
+            <label for="method_installation" class="col-sm-4 col-form-label">Installation Method:</label>
+            <div class="col-sm-8">
                 <input type="radio" id="method_installation_auto" name="method_installation" value="auto" {{ $softwares->method_installation == 'auto' ? 'checked' : '' }}> Auto
-                <input type="radio" id="method_installation_man" name="method_installation" value="manually" {{ $softwares->method_installation == 'manually' ? 'checked' : '' }}> Manually <br>
+                <input type="radio" style="margin-left: 200px;" id="method_installation_man" name="method_installation" value="manually" {{ $softwares->method_installation == 'manually' ? 'checked' : '' }}> Manually <br>
             </div>
         </div>
 

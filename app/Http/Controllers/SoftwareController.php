@@ -158,8 +158,6 @@ class SoftwareController extends Controller
         //     $validated['euc'] = implode(', ', $validated['euc']);
         // }
         
-        $validated['languages'] = implode(', ', $languages);
-
     
         $softwares=Software::findOrFail($id);
         $softwares->update($validated);

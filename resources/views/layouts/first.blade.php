@@ -152,8 +152,8 @@
     @yield('content')
 <div class="container-fluid">
     <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100" style="position:fixed; width: 200px;">
+        <div class="col-fixed col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <strong class="fs-5 d-none d-sm-inline">{{ \Carbon\Carbon::now()->format('l, F j, Y') }}</strong>
                 </a>
@@ -212,7 +212,7 @@
                     @endforeach
                 </div>
     
-                <footer style="padding: 10px 20px; position: fixed;bottom: 0;width: 20%;">
+                <footer style="padding: 10px 20px; position: fixed;bottom: 0;width: 30%;">
                     <form id="profile-form" action="{{ route('profile.edit') }}" method="GET">
                         @csrf
                         <button type="submit" style="background: none; border: none; color:white; font-size:20px;"><i class="fas fa-user"></i> Profile</button>

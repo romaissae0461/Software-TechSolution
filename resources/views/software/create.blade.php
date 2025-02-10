@@ -78,12 +78,12 @@
                 <label for="euc">EUC Technical Engineer</label>
                 <select class="form-control" name="euc" id="euc">
                     <option value="" disabled selected>Select Responsible EUC </option>
-                    <option value="euc[]">Amina ELKEBBAJ</option>
-                    <option value="euc[]">Zakaria EL IDRISSI</option>
-                    <option value="euc[]">Ahmed Amine EL AOUIRI</option>
-                    <option value="euc[]">Radouane FARIK</option>
-                    <option value="euc[]">Mourad AIDA</option>
-                    <option value="euc[]">Mohamed Imad Eddine AISSOUF</option>
+                    <option value="Amina ELKEBBAJ">Amina ELKEBBAJ</option>
+                    <option value="Zakaria EL IDRISSI">Zakaria EL IDRISSI</option>
+                    <option value="Ahmed Amine EL AOUIRI">Ahmed Amine EL AOUIRI</option>
+                    <option value="Radouane FARIK">Radouane FARIK</option>
+                    <option value="Mourad AIDA">Mourad AIDA</option>
+                    <option value="Mohamed Imad Eddine AISSOUF">Mohamed Imad Eddine AISSOUF</option>
                 </select>
             </div>
             
@@ -140,13 +140,13 @@
 
             <div class="form-group">
                 <label for="languages">Languages:</label><br>
-                <label for="francais">French</label>
-                <input type="radio" id="francais_yes" name="languages[francais]" value="Yes"> Yes
-                <input type="radio" id="francais_no" name="languages[francais]" value="No"> No
+                <label for="francais" style="margin-right: 400px;">French</label>
+                <input type="radio" id="francais_yes" name="languages[french]" value="Yes"> Yes
+                <input type="radio" style="margin-left: 200px;" id="francais_no" name="languages[french]" value="No"> No
                 <br>
-                <label for="anglais">English</label>
-                <input type="radio" id="anglais_yes" name="languages[anglais]" value="Yes"> Yes
-                <input type="radio" id="anglais_no" name="languages[anglais]" value="No"> No
+                <label for="anglais" style="margin-right: 400px;">English</label>
+                <input type="radio" id="anglais_yes" name="languages[english]" value="Yes"> Yes
+                <input type="radio" style="margin-left: 200px;" id="anglais_no" name="languages[english]" value="No"> No
             </div>
 
             <div class="form-group">
@@ -155,15 +155,15 @@
             </div>
 
             <div class="form-group">
-                <label for="master_integration">Master Integrated Software:</label>
+                <label for="master_integration" style="margin-right: 200px;">Master Integrated Software:</label>
                 <input type="radio" id="master_integration_yes" name="master_integration" value="1"> Yes
-                <input type="radio" id="master_integration_no" name="master_integration" value="0"> No
+                <input type="radio" style="margin-left: 200px;" id="master_integration_no" name="master_integration" value="0"> No
             </div>
 
             <div class="form-group">
-                <label for="method_installation">Installation Method:</label>
+                <label for="method_installation" style="margin-right: 250px;">Installation Method:</label>
                 <input type="radio" id="method_installation_auto" name="method_installation" value="auto"> Auto
-                <input type="radio" id="method_installation_man" name="method_installation" value="manually"> Manually
+                <input type="radio" style="margin-left: 200px;" id="method_installation_man" name="method_installation" value="manually"> Manually
             </div>
 
             <div class="form-group">

@@ -107,45 +107,46 @@
             </div>
         </div>
 
-        <div class="form-group">
-                <label>O.S Compatibility:</label>
-                <div class="form-control">
+        <div class="form-group d-flex">
+            <label for="os_compatibility" class="col-sm-2 col-form-label" style="margin-right:15px;">O.S Compatibility:</label>
+            <div class="form-control col-xs-9">
                 <div>
-    <label>
-        <input type="checkbox" name="os_compatibility[]" value="Windows 10" 
-            {{ in_array('Windows 10', explode(', ', $techsols->os_compatibility)) ? 'checked' : '' }}>
-        Windows 10
-    </label>
-</div>
-<div>
-    <label>
-        <input type="checkbox" name="os_compatibility[]" value="Windows 11" 
-            {{ in_array('Windows 11', explode(', ', $techsols->os_compatibility)) ? 'checked' : '' }}>
-        Windows 11
-    </label>
-</div>
-<div>
-    <label>
-        <input type="checkbox" name="os_compatibility[]" value="Windows 11/10" 
-            {{ in_array('Windows 11/10', explode(', ', $techsols->os_compatibility)) ? 'checked' : '' }}>
-        Windows 11,10
-    </label>
-</div>
-<div>
-    <label>
-        <input type="checkbox" name="os_compatibility[]" value="Android" 
-            {{ in_array('Android', explode(', ', $techsols->os_compatibility)) ? 'checked' : '' }}>
-        Android
-    </label>
-</div>
-<div>
-    <label>
-        <input type="checkbox" name="os_compatibility[]" value="iOS" 
-            {{ in_array('iOS', explode(', ', $techsols->os_compatibility)) ? 'checked' : '' }}>
-        iOS
-    </label>
+                    <label>
+                        <input type="checkbox" name="os_compatibility[]" value="Windows 10" 
+                            {{ in_array('Windows 10', explode(', ', $techsols->os_compatibility)) ? 'checked' : '' }}>
+                        Windows 10
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="os_compatibility[]" value="Windows 11" 
+                            {{ in_array('Windows 11', explode(', ', $techsols->os_compatibility)) ? 'checked' : '' }}>
+                        Windows 11
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="os_compatibility[]" value="Windows 11/10" 
+                            {{ in_array('Windows 11/10', explode(', ', $techsols->os_compatibility)) ? 'checked' : '' }}>
+                        Windows 11,10
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="os_compatibility[]" value="Android" 
+                            {{ in_array('Android', explode(', ', $techsols->os_compatibility)) ? 'checked' : '' }}>
+                        Android
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="os_compatibility[]" value="iOS" 
+                            {{ in_array('iOS', explode(', ', $techsols->os_compatibility)) ? 'checked' : '' }}>
+                        iOS
+                    </label>
                 </div>
             </div>
+        </div>
 
 
 
