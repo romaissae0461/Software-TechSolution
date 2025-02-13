@@ -18,7 +18,7 @@ use App\Http\Controllers\MasterAutoPilotController;
 // });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/index', [SoftwareController::class, 'index'])->name('software.index');
+    Route::get('/softwares', [SoftwareController::class, 'index'])->name('software.index');
 
     Route::get('/addsoftware', [SoftwareController::class, 'create'])
         ->middleware('role:admin')
@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
         ->middleware('role:admin')
         ->name('software.store');
     Route::get('/alphabet/{letter?}', [SoftwareController::class, 'alphabetically'])->name('alphabet.search');
-    Route::get('/edit/{id}', [SoftwareController::class, 'edit'])
+    Route::get('/software/edit/{id}', [SoftwareController::class, 'edit'])
         ->middleware('role:admin')
         ->name('software.edit');
     Route::put('/edit/{id}', [SoftwareController::class, 'update']) 
@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
 
 
     //TechSol
-    Route::get('/tech/index', [TechSolController::class, 'index'])->name('tech.index');
+    Route::get('/technology_solutions', [TechSolController::class, 'index'])->name('tech.index');
     Route::get('/tech/create', [TechSolController::class, 'create'])->middleware('role:admin')->name('tech.create');
     Route::post('/tech/store', [TechSolController::class, 'store'])->middleware('role:admin')->name('tech.store');
     Route::get('/tech/edit/{id}', [TechSolController::class, 'edit'])->middleware('role:admin')->name('tech.edit');
@@ -75,16 +75,16 @@ Route::middleware('auth')->group(function () {
 
 
     // Documentation
-    Route::get('/doc/create',[DocumentController::class, 'create'])->middleware('role:admin')->name('doc.create');
-    Route::get('/doc/create/techsol', [DocumentController::class, 'createForTechSol'])->middleware('role:admin')->name('doc.create.techsol');
+    Route::get('/document/create',[DocumentController::class, 'create'])->middleware('role:admin')->name('doc.create');
+    Route::get('/document/create/techsol', [DocumentController::class, 'createForTechSol'])->middleware('role:admin')->name('doc.create.techsol');
     Route::post('/doc/store',[DocumentController::class, 'store'])->middleware('role:admin')->name('doc.store');
-    Route::get('/doc/edit/{id}', [DocumentController::class, 'edit'])->middleware('role:admin')->name('doc.edit');
-    Route::get('/doc/edit/techsol/{id}', [DocumentController::class, 'editForTechSol'])->middleware('role:admin')->name('doc.edit.techsol');
+    Route::get('/document/edit/{id}', [DocumentController::class, 'edit'])->middleware('role:admin')->name('doc.edit');
+    Route::get('/document/edit/techsol/{id}', [DocumentController::class, 'editForTechSol'])->middleware('role:admin')->name('doc.edit.techsol');
     Route::put('/doc/edit/{id}', [DocumentController::class, 'update'])->middleware('role:admin')->name('doc.update');
     Route::delete('/doc/delete/{id}', [DocumentController::class, 'delete'])->middleware('role:admin')->name('doc.delete');
 
     //euc
-    Route::get('/euc/index',[EucProcessController::class, 'index'])->name('euc.index');
+    Route::get('/euc',[EucProcessController::class, 'index'])->name('euc.index');
     Route::get('/euc/create',[EucProcessController::class, 'create'])->middleware('role:admin')->name('euc.create');
     Route::post('/euc/store',[EucProcessController::class, 'store'])->middleware('role:admin')->name('euc.store');
     Route::get('/euc/edit/{id}', [EucProcessController::class, 'edit'])->middleware('role:admin')->name('euc.edit');
@@ -93,7 +93,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/euc/delete/{id}', [EucProcessController::class, 'delete'])->middleware('role:admin')->name('euc.delete');
 
     //Master
-    Route::get('/autopilot/index',[MasterAutoPilotController::class, 'index'])->name('autopilot.index');
+    Route::get('/autopilot',[MasterAutoPilotController::class, 'index'])->name('autopilot.index');
     Route::get('/autopilot/create',[MasterAutoPilotController::class, 'create'])->middleware('role:admin')->name('autopilot.create');
     Route::post('/autopilot/store',[MasterAutoPilotController::class, 'store'])->middleware('role:admin')->name('autopilot.store');
     Route::get('/autopilot/edit/{id}', [MasterAutoPilotController::class, 'edit'])->middleware('role:admin')->name('autopilot.edit');

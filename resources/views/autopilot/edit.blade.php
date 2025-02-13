@@ -39,11 +39,20 @@
             </div>
         </div>
         <div class="form-group d-flex">
-            <label for="euc" class="col-sm-2 col-form-label">EUC: </label>
+        <label for="euc" class="col-sm-2 col-form-label">Responsible EUC: </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="euc" name="euc" value="{{ $autopilot->euc }}" >
+            <select class="form-control" name="euc" id="euc">
+            <option value="">{{ $autopilot->euc }}</option>
+                <option value="Amina ELKEBBAJ" {{$autopilot->euc == 'Amina ELKEBBAJ' ? 'selected' : ''}}>Amina ELKEBBAJ</option>
+                <option value="Zakaria EL IDRISSI" {{$autopilot->euc == 'Zakaria EL IDRISSI' ? 'selected' : ''}}>Zakaria EL IDRISSI</option>
+                <option value="Ahmed Amine EL AOUIRI" {{$autopilot->euc == 'Ahmed Amine EL AOUIRI' ? 'selected' : ''}}>Ahmed Amine EL AOUIRI</option>
+                <option value="Radouane FARIK" {{$autopilot->euc == 'Radouane FARIK' ? 'selected' : ''}}>Radouane FARIK</option>
+                <option value="Mourad AIDA" {{$autopilot->euc == 'Mourad AIDA' ? 'selected' : ''}}>Mourad AIDA</option>
+                <option value="Mohamed Imad Eddine AISSOUF" {{$autopilot->euc == 'Mohamed Imad Eddine AISSOUF' ? 'selected' : ''}}>Mohamed Imad Eddine AISSOUF</option>
+            </select>
             </div>
         </div>
+        
         <div class="form-group d-flex">
             <label for="ritm" class="col-sm-2 col-form-label">RITM: </label>
             <div class="col-sm-10">

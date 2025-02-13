@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software-TechSolut</title>
-
+    <title> @yield('title') Software-TechSolut</title>
+<link rel="icon" href="{!! asset('pictures/dxclogoPurpleBlackRGB.png') !!}"/>
     <style>
           
       .container-fluid {
@@ -220,7 +220,7 @@
                     @if(auth()->user()->hasRole('admin'))
                     <form id="register-form" action="{{ route('register') }}" method="GET">
                         @csrf
-                        <button type="submit" style="background: none; border: none; color:white; font-size:20px;"><i class="fas fa-user"></i> Register</button>
+                        <button type="submit" style="background: none; border: none; color:white; font-size:20px;"><i class="fas fa-registered"></i></i> Register</button>
                     </form>
                     @endif
                     <form id="logout-form" action="{{ route('logout') }}" method="POST">

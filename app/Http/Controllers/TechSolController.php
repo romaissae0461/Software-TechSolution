@@ -54,6 +54,10 @@ class TechSolController extends Controller
             'complexity'=>'nullable|in:Complexe,Moyen,Simple',
             'criticite'=>'nullable|in:Complexe,Moyen,Simple',
             'prerequis'=>'nullable|string',
+            'euc' => 'nullable|string',
+            'euc.*' => 'string|in:Amina ELKEBBAJ,Zakaria EL IDRISSI,Ahmed Amine EL AOUIRI,Radouane FARIK,Mourad AIDA,Mohamed Imad Eddine AISSOUF',
+            'kb_num' => 'nullable|string',
+            'comment' => 'nullable|string',
         ]);
 
         $languages = [];
@@ -110,6 +114,10 @@ class TechSolController extends Controller
             'complexity'=>'nullable|in:Complexe,Moyen,Simple',
             'criticite'=>'nullable|in:Complexe,Moyen,Simple',
             'prerequis'=>'nullable|string',
+            'euc' => 'nullable|string',
+            'euc.*' => 'string|in:Amina ELKEBBAJ,Zakaria EL IDRISSI,Ahmed Amine EL AOUIRI,Radouane FARIK,Mourad AIDA,Mohamed Imad Eddine AISSOUF',
+            'kb_num' => 'nullable|string',
+            'comment' => 'nullable|string',
         ]);
 
         $languages = [];

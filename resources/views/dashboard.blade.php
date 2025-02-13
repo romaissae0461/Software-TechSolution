@@ -1,5 +1,6 @@
 @extends('layouts.first')
-
+@section('page-title')
+@endsection
 <x-app-layout>
     
     <div class="py-4">
@@ -20,4 +21,5 @@
             </div>
         </div>
     </div>
+    
 </x-app-layout>

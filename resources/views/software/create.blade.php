@@ -97,7 +97,7 @@
             </div>
 
             <div class="form-group">
-                <label for="category_id">Category: <a href="{{route('category.create')}}">  Add a category</a></label> 
+                <label for="category_id">Category: @if(auth()->user()->hasRole('admin'))<a href="{{route('category.create')}}">  Add a category</a>@endif</label> 
                 <select name="category_id" id="category_id" class="form-control">
                     <option value="">Select a category</option>
                     @foreach($categories as $category)

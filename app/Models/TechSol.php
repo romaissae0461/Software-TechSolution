@@ -21,6 +21,11 @@ class TechSol extends Model
         return $this->hasMany(Document::class);
     }
 
+    protected $attributes = [
+        'os_compatibility'=>"Windows 10",
+    ];
+
+    
     //To store the name of user after authentication
     protected static function boot()
     {
@@ -33,5 +38,6 @@ class TechSol extends Model
         static::updating(function ($model) {
             $model->updated_by = Auth::check() ? Auth::user()->name : 'System';
         });
+    
     }
 }

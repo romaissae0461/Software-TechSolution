@@ -86,7 +86,7 @@
         </div>
 
         <div class="form-group d-flex">
-            <label for="euc" class="col-sm-2 col-form-label">EUC Manager: </label>
+            <label for="euc" class="col-sm-2 col-form-label">Responsible EUC: </label>
             <div class="col-sm-10">
             <select class="form-control" name="euc" id="euc">
             <option value="">{{ $softwares->euc }}</option>

@@ -26,6 +26,7 @@ class Software extends Model
 
     protected $attributes = [
         'time_insta' => 2,
+        'os_compatibility'=>"Windows 10",
     ];
 
     public function category(){

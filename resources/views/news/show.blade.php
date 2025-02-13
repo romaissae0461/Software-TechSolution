@@ -1,5 +1,8 @@
 @extends('layouts.first')
 
+@section('title')
+News
+@endsection
 
 @section('cont')
 

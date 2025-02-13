@@ -39,7 +39,7 @@ class NewsController extends Controller
 
         $recipients = [
             'amina.elkebaj@gmail.com',
-            'romaissae.errachdi@usmba.ac.ma',
+            //'romaissae.errachdi@usmba.ac.ma',
             'romaissaeerrachdi04@gmail.com',
         ];
 
