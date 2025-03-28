@@ -9,8 +9,13 @@ use App\Models\EucProcess;
 class EucProcessController extends Controller
 {
     public function index(){
+        try{
         $euc=EucProcess::all();
         return view('euc.index', compact('euc'));
+        } catch (\Exception $e) {
+            \Log::error('Error in index(): ' . $e->getMessage());
+            abort(500, 'Something went wrong.');
+        }
     }
     public function show($id)
     {
@@ -27,7 +32,7 @@ class EucProcessController extends Controller
     public function store(Request $request){
         $validated = $request->validate([
             'name'=>'required|string',
-            'file_chem'=>'required|file|mimes:pdf|max:10240', 
+            'file_chem'=>'required|file|mimes:pdf,doc,docx|max:10240', 
         ]);       
         
         if ($request->hasFile('file_chem')) {
@@ -77,5 +82,21 @@ class EucProcessController extends Controller
         return redirect()->route('euc.index')->with('EUC Process Deleted!');
         }
     }
-   
+    public function viewFile($id)
+    {
+        $euc = EucProcess::findOrFail($id);
+        $fileChem = storage_path('app/public/' . $euc->file_chem);
+        $extension = pathinfo($fileChem, PATHINFO_EXTENSION);
+        $customName = ($euc->name ?? 'document') . '.' . $extension; 
+
+        if($extension==='pdf'){
+            return response()->file($fileChem, [
+                'Content-Disposition' => 'inline; filename="' . $customName . '"'
+            ]);
+        }
+        else{
+            return response()->download($fileChem, $customName); 
+        }
+    }
+    
 }

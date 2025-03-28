@@ -8,8 +8,13 @@ use App\Models\MasterAutoPilot;
 class MasterAutoPilotController extends Controller
 {
     public function index(){
+        try{
         $autopilot=MasterAutoPilot::all();
         return view('autopilot.index', compact('autopilot'));
+        } catch (\Exception $e) {
+            \Log::error('Error in index(): ' . $e->getMessage());
+            abort(500, 'Something went wrong.');
+        }
     }
     public function show($id)
     {
@@ -70,17 +75,18 @@ class MasterAutoPilotController extends Controller
         ]);
     
         $autopilot=MasterAutoPilot::findOrFail($id);
+        
+        $autopilot->name=$validated['name'];
+        $autopilot->function=$validated['function'];
+        $autopilot->update_date=$validated['update_date'];
+        $autopilot->ritm=$validated['ritm'];
+        $autopilot->euc=$validated['euc'];
         if ($request->hasFile('filemaster')) {
             $fileMaster = $request->file('filemaster')->store('autopilot_pdfs', 'public'); // this will store the file in public storage
-        } 
-        $autopilot->update(
-            ['name' => $validated['name'],
-        'function' => $validated['function'], 
-        'update_date' =>  $validated['update_date'],
-        'ritm' => $validated['ritm'],
-        'euc' => $validated['euc'],
-        'filemaster' => $fileMaster, ]
-        );
+            $autopilot->filemaster = $fileMaster;
+        }
+
+        $autopilot->save();
         return redirect()->route('autopilot.index')->with('success', 'Process updated successflly!');
     }
 
@@ -92,4 +98,20 @@ class MasterAutoPilotController extends Controller
         }
     }
    
+    public function viewFile($id)
+    {
+        $autopilot = MasterAutoPilot::findOrFail($id);
+        $fileMaster = storage_path('app/public/' . $autopilot->filemaster);
+        $extension=strtolower(pathinfo($fileMaster, PATHINFO_EXTENSION));
+        $customName = ($autopilot->name ?? 'document') . '.' . $extension; 
+
+        if($extension==='pdf')
+        {
+            return response()->file($fileMaster, [
+                'Content-Disposition' => 'inline; filename="' . $customName . '"'
+            ]);
+        }else{
+            return response()->download($fileMaster, $customName);
+        }
+    }
 }

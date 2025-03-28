@@ -63,6 +63,9 @@
                 <p><strong>Criticality:</strong> {{ $software->criticite }}</p>
                 <p  style="background-color: #f0f0f0;"><strong>ARP Full Name:</strong> {{ $software->arp_full_name }}</p>
                 
+                <p><strong>Created By:</strong> {{ $software->created_by }}</p>
+                <p  style="background-color: #f0f0f0;"><strong>Updated By:</strong> {{ $software->updated_by }}</p>
+                
             </div>
         </div>
         <div class="text-right">
@@ -87,7 +90,8 @@
             <div class="card-body">
                 <!-- <p><strong>{{ $documentation->titre }}</strong></p> -->
                 <p><strong>Description:</strong> {{ $documentation->description }}</p>
-                <p><a href="{{ asset('storage/'.$documentation->file_path) }}" target="_blank" class="btn btn-sm btn-info">
+                <!-- {{ asset('storage/'.$documentation->file_path) }} -->
+                <p><a href="{{ route('doc.view', ['id' => $documentation->id, 'titre' => Str::slug($documentation->titre)]) }}" target="_blank" class="btn btn-sm btn-info">
                         View PDF
                     </a>
                 </p>

@@ -49,6 +49,9 @@
                 
             
                 <p style="background-color: #f0f0f0;"><strong>RITM:</strong> {{ $techsols->rfc_number }}</p>
+                <p><strong>Created By:</strong> {{ $techsols->created_by }}</p>
+                <p style="background-color: #f0f0f0;"><strong>Updated By:</strong> {{ $techsols->updated_by }}</p>
+            
             </div>
         </div>
 

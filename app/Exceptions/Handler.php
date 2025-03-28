@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -41,8 +42,20 @@ class Handler extends ExceptionHandler
     
     public function render($request, Throwable $exception)
     {
-        if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
-            return back()->withErrors(['error' => 'Your session expired. Please refresh and try again.']);
+        if ($exception instanceof TokenMismatchException) {
+            return redirect()->route('login')->with('error', 'Your session has expired. Please log in again.');
+        }
+
+        if ($exception instanceof HttpException && $exception->getStatusCode() === 419) {
+            return redirect()->route('login')->with('error', 'Your session has expired. Please log in again.');
+        }
+    
+        if ($exception instanceof FatalError && str_contains($exception->getMessage(), 'Maximum execution time')) {
+            return redirect()->route('test-error');
+        }
+
+        if ($exception instanceof \Illuminate\Database\QueryException) {
+            return response()->with(['error' => 'A database error occurred.'], 500);
         }
 
         return parent::render($request, $exception);

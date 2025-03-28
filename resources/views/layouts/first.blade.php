@@ -4,146 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> @yield('title') Software-TechSolut</title>
-<link rel="icon" href="{!! asset('pictures/dxclogoPurpleBlackRGB.png') !!}"/>
-    <style>
-          
-      .container-fluid {
-    display: flex;
-    flex-wrap: nowrap;
-}
+    <link rel="icon" href="{!! asset('pictures/dxclogoPurpleBlackRGB.png') !!}"/>
+    <style>     
+        .container-fluid {
+            display: flex;
+            flex-wrap: nowrap;
+        }
 
-.container-fluid .row {
-    flex: 1; 
-    margin-left: 100;
-    min-height: 100vh;
-}
+        .container-fluid .row {
+            flex: 1; 
+            margin-left: 100;
+            min-height: 100vh;
+        }
 
-.form-group{
-  min-width: 600px;
-  overflow-x: auto;
-}
-        
-      .table {
-    margin-top: 20px; 
-    min-width: 700px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-}
-.table thead {
-    background-color: #5f249f;
-    color: white;
-}
+        .form-group{
+        min-width: 600px;
+        overflow-x: auto;
+        }
+                
+        .table {
+            margin-top: 20px; 
+            min-width: 700px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        }
+        .table thead {
+            background-color: #5f249f;
+            color: white;
+        }
 
-.table-responsive {
-    overflow-x: auto;
-}
+        .table-responsive {
+            overflow-x: auto;
+        }
 
-.table th, .table td {
-    text-align: center;
-    vertical-align: middle;
-    padding: 12px;
-}
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 12px;
+        }
 
-.table tbody tr:nth-child(even) {
-    background-color: #f9f9f9; 
-}
+       
 
-.table tbody tr:hover {
-    background-color: #ececec; /* Row highlight on hover */
-}
-.alert {
-    margin-top: 20px;
-    border-radius: 10px;
-}
-.btn-primary {
-    background-color: #5f249f !important; 
-    border: 2px solid #ddd !important; 
-    border-radius: 10px !important; 
-    padding: 8px 12px;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease !important; 
-}
-.btn-primary:hover {
-    background-color:rgb(144, 99, 189) !important;
-    transform: translateY(-2px); 
-}
+        .table tbody tr:hover {
+            background-color: #ececec; /* Row highlight on hover */
+        }
+        .alert {
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #5f249f !important; 
+            border: 2px solid #ddd !important; 
+            border-radius: 10px !important; 
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease !important; 
+        }
+        .btn-primary:hover {
+            background-color:rgb(144, 99, 189) !important;
+            transform: translateY(-2px); 
+        }
 
-.btn-danger {
-    background-color: #dc3545;
-    border: none !important;
-    border-radius: 8px !important;
-    padding: 8px 12px;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
+        .btn-danger {
+            background-color: #dc3545;
+            border: none !important;
+            border-radius: 8px !important;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
 
-.btn-danger:hover {
-    background-color: #c82333;
-    transform: translateY(-2px);
-}
-.view-all-btn {
-    background-color: #5f249f;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 16px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
+        .btn-danger:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+        .view-all-btn {
+            background-color: #5f249f;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
 
-.view-all-btn:hover {
-    background-color: rgb(47, 16, 79);
-    color:white;
-    transform: translateY(-2px);
-}
+        .view-all-btn:hover {
+            background-color: rgb(47, 16, 79);
+            color:white;
+            transform: translateY(-2px);
+        }
 
-.sansserif {
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-}
+        .pagination .page-link {
+            color: #5f249f !important; /* Changes the text color of the links */
+            border-color: #5f249f !important; /* Changes the border color of the links */
+        }
+        .pagination .page-link:hover {
+            background-color: #5f249f !important; /* Adds a purple background on hover */
+            color: #fff !important; /* Changes the text color to white for better contrast */
+        }
 
-.monospace {
-  font-family: "Lucida Console", Courier, monospace;
-}
+        .pagination .active .page-link {
+            background-color: #5f249f !important;  /* Sets a purple background for the active link */
+            border-color: #5f249f !important; /* Sets the border color for the active link */
+            color: #fff !important; /* Changes the text color to white */
+        }
+        .news-details-container {
+            border: 2px solid #ddd !important; 
+            border-radius: 10px !important;
+            background: linear-gradient(to bottom, #ffffff, #f8f9fa) !important; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important; 
+            max-width: 800px !important;
+        }
 
-.cursive {
-  font-family: cursive;
-}
-.pagination .page-link {
-        color: #5f249f !important; /* Changes the text color of the links */
-        border-color: #5f249f !important; /* Changes the border color of the links */
-    }
-    .pagination .page-link:hover {
-        background-color: #5f249f !important; /* Adds a purple background on hover */
-        color: #fff !important; /* Changes the text color to white for better contrast */
-    }
-
-    .pagination .active .page-link {
-        background-color: #5f249f !important;  /* Sets a purple background for the active link */
-        border-color: #5f249f !important; /* Sets the border color for the active link */
-        color: #fff !important; /* Changes the text color to white */
-    }
-    .news-details-container {
-    border: 2px solid #ddd !important; 
-    border-radius: 10px !important;
-    background: linear-gradient(to bottom, #ffffff, #f8f9fa) !important; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important; 
-    max-width: 800px !important;
-}
-
-.news-meta {
-    font-size: 1rem !important; 
-    color: #555 !important; 
-}
-.news-content {
-    font-size: 1.2rem !important; 
-    line-height: 1.8 !important; 
-    color: #444 !important; 
-    padding: 0 10px !important; 
-}
+        .news-meta {
+            font-size: 1rem !important; 
+            color: #555 !important; 
+        }
+        .news-content {
+            font-size: 1.2rem !important; 
+            line-height: 1.8 !important; 
+            color: #444 !important; 
+            padding: 0 10px !important; 
+        }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -188,7 +174,7 @@
 
                     <li class="nav-item">
                         <a href="{{ route('euc.index') }}" class="nav-link align-middle px-0">
-                            <i class="fas fa-cogs"></i>  
+                            <i class="fas fa-desktop"></i>  
                             <span class="badge badge-success ml-2">{{ $eucCount }}</span>
                             <span class="ms-1 d-none d-sm-inline">EUC Process</span>
                         </a>
@@ -197,7 +183,7 @@
 
                     <li class="nav-item">
                         <a href="{{ route('autopilot.index') }}" class="nav-link align-middle px-0">
-                            <i class="fas fa-cogs"></i> 
+                            <i class="fas fa-network-wired"></i> 
                             <span class="badge badge-success ml-2">{{ $autopilotCount }}</span>
                             <span class="ms-1 d-none d-sm-inline">Master SCCM / Autopilot intune</span>
                         </a>

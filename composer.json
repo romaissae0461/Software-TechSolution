@@ -10,9 +10,11 @@
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
         "mailersend/laravel-driver": "^2.7",
+        "predis/predis": "^2.3",
         "spatie/laravel-permission": "^6.10"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.15",
         "fakerphp/faker": "^1.23",
         "laravel/breeze": "^2.3",
         "laravel/pail": "^1.1",

@@ -27,9 +27,10 @@
                         <td>{{ $process->name }}</td>
                         <td>
                         
-                <a href="{{ asset('storage/' . $process->file_chem) }}" target="_blank" class="btn btn-sm btn-info">
+                <a href="{{ route('euc.view', ['id' => $process->id, 'name' => Str::slug($process->name)]) }}" target="_blank" class="btn btn-sm btn-info">
                     View PDF
                 </a>
+                
                         </td>
                         <td>
                             {{$process->created_by}}

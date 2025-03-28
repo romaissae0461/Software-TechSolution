@@ -3,7 +3,7 @@
 
 <div class="container">
 
-    <h1 class="mt-4 mb-4 text-center">Update EUC Process</h1>
+    <h1 class="mt-4 mb-4 text-center">Update Master SCCM / Autopilot intune</h1>
     @if($errors->any())
         <div style="color: red">
             <ul>

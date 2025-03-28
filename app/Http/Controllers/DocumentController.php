@@ -10,8 +10,13 @@ use App\Models\TechSol;
 class DocumentController extends Controller
 {
     public function index(){
+        try{
         $documentations = Document::all();
         return view('software.index', compact('documentations'));
+        } catch (\Exception $e) {
+            \Log::error('Error in index(): ' . $e->getMessage());
+            abort(500, 'Something went wrong.');
+        }
     }
     //For Software 
 
@@ -130,4 +135,16 @@ class DocumentController extends Controller
             }
         }
     }
+
+    public function viewFile($id)
+{
+    $doc = Document::findOrFail($id);
+    $filePath = storage_path('app/public/' . $doc->file_path);
+    $customName = ($doc->titre ?? 'document') . '.pdf'; 
+
+    return response()->file($filePath, [
+        'Content-Disposition' => 'inline; filename="' . $customName . '"'
+    ]);
+}
+
 }

@@ -7,7 +7,6 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\TechSolController;
 use App\Http\Controllers\SupportLevelController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\EucProcessController;
 use App\Http\Controllers\MasterAutoPilotController;
@@ -69,11 +68,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/category/create', [CategoryController::class, 'store'])->name('category.store');
 
 
-    //Service
-    Route::get('/service/create', [ServiceController::class, 'create'])->name('service.create');
-    Route::post('/service/create', [ServiceController::class, 'store'])->name('service.store');
-
-
+    
     // Documentation
     Route::get('/document/create',[DocumentController::class, 'create'])->middleware('role:admin')->name('doc.create');
     Route::get('/document/create/techsol', [DocumentController::class, 'createForTechSol'])->middleware('role:admin')->name('doc.create.techsol');
@@ -81,12 +76,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/document/edit/{id}', [DocumentController::class, 'edit'])->middleware('role:admin')->name('doc.edit');
     Route::get('/document/edit/techsol/{id}', [DocumentController::class, 'editForTechSol'])->middleware('role:admin')->name('doc.edit.techsol');
     Route::put('/doc/edit/{id}', [DocumentController::class, 'update'])->middleware('role:admin')->name('doc.update');
+    Route::get('/document/{id}/{titre}', [DocumentController::class, 'viewFile'])->name('doc.view');
     Route::delete('/doc/delete/{id}', [DocumentController::class, 'delete'])->middleware('role:admin')->name('doc.delete');
 
     //euc
     Route::get('/euc',[EucProcessController::class, 'index'])->name('euc.index');
     Route::get('/euc/create',[EucProcessController::class, 'create'])->middleware('role:admin')->name('euc.create');
     Route::post('/euc/store',[EucProcessController::class, 'store'])->middleware('role:admin')->name('euc.store');
+    Route::get('/euc/{id}/file/{name}', [EucProcessController::class, 'viewFile'])->name('euc.view');
     Route::get('/euc/edit/{id}', [EucProcessController::class, 'edit'])->middleware('role:admin')->name('euc.edit');
     Route::put('/euc/edit/{id}', [EucProcessController::class, 'update'])->middleware('role:admin')->name('euc.update');
     Route::get('/euc/show/{id}', [EucProcessController::class, 'show'])->name('euc.show');
@@ -96,13 +93,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/autopilot',[MasterAutoPilotController::class, 'index'])->name('autopilot.index');
     Route::get('/autopilot/create',[MasterAutoPilotController::class, 'create'])->middleware('role:admin')->name('autopilot.create');
     Route::post('/autopilot/store',[MasterAutoPilotController::class, 'store'])->middleware('role:admin')->name('autopilot.store');
+    Route::get('/autopilot/{id}/file/{name}', [MasterAutoPilotController::class, 'viewFile'])->name('autopilot.view');
     Route::get('/autopilot/edit/{id}', [MasterAutoPilotController::class, 'edit'])->middleware('role:admin')->name('autopilot.edit');
     Route::put('/autopilot/edit/{id}', [MasterAutoPilotController::class, 'update'])->middleware('role:admin')->name('autopilot.update');
     Route::get('/autopilot/show/{id}', [MasterAutoPilotController::class, 'show'])->name('autopilot.show');
     Route::delete('/autopilot/delete/{id}', [MasterAutoPilotController::class, 'delete'])->middleware('role:admin')->name('autopilot.delete');
 });
+Route::get('/test-error', function () {
+    abort(500);
+});
+
+
 //auth 
-Route::get('/dashboard', function () {
+Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 

@@ -8,15 +8,23 @@ use App\Models\Category;
 use App\Models\TechSol;
 use App\Models\SupportLevel;
 use App\Models\Document;
+use Illuminate\Support\Facades\Cache;
 
 
 class SoftwareController extends Controller
 {
     public function index(){
-        $softwares=Software::paginate(10);
-        $supportLevels = SupportLevel::all();
+        try{
+        $softwares=Cache::remember('software_list', 60, function () {
+            return Software::paginate(10);
+        });
+        } catch (\Exception $e) {
+            \Log::error('Error in index(): ' . $e->getMessage());
+            abort(500, 'Something went wrong.');
+        }
+        
         $documentations = Document::all();
-        return view('software.index', compact('softwares', 'supportLevels', 'documentations'));
+        return view('software.index', compact('softwares', 'documentations'));
     }
     public function show($id)
     {
@@ -58,10 +66,8 @@ class SoftwareController extends Controller
             'os_compatibility.*' => 'string|in:Windows 10,Windows 11,Windows 11/10,Android,iOS',
             'languages'=>'nullable|array',
             'master_integration'=>'nullable|boolean',
-            // 'type'=>'nullable|string|in:courant,isolé',
             'method_installation'=>'nullable|in:auto,manually',
             'source'=>'nullable|string',
-            // 'sms'=>'nullable|boolean',
             'time_insta'=>'nullable|integer|min:2',
             'arp_full_name'=>'nullable|string',
             'exe_file_path'=>'nullable|string',
@@ -154,11 +160,6 @@ class SoftwareController extends Controller
             $validated['os_compatibility'] = implode(', ', $validated['os_compatibility']);
         }
         
-        // if (isset($validated['euc'])) {
-        //     $validated['euc'] = implode(', ', $validated['euc']);
-        // }
-        
-    
         $softwares=Software::findOrFail($id);
         $softwares->update($validated);
         return redirect()->route('software.index')->with('success', 'software updated successflly!');

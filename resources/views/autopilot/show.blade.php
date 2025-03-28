@@ -20,7 +20,7 @@
                 <p><strong>Update date:</strong> {{ $autopilot->update_date }}</p>
                 <p style="background-color: #f0f0f0;"><strong>EUC:</strong> {{ $autopilot->euc }}</p>
                 <p><strong>RITM:</strong> {{ $autopilot->ritm }}</p>
-                <p style="background-color: #f0f0f0;"><strong>File Path:</strong> <a href="{{ asset('storage/' . $autopilot->filemaster) }}" target="_blank"> {{ $autopilot->filemaster }}</a></p>               
+                <p style="background-color: #f0f0f0;"><strong>File Path:</strong> <a href="{{ asset('storage/' . $autopilot->filemaster) }}" target="_blank"> {{ $autopilot->name }}</a></p>               
                 <p><strong>Created By:</strong> {{ $autopilot->created_by }}</p>
                 <p style="background-color: #f0f0f0;"><strong>Updated By:</strong> {{ $autopilot->updated_by }}</p>               
             </div>

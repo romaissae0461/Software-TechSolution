@@ -36,7 +36,7 @@
     @enderror
                 @if ($euc->file_chem)
         <small class="form-text text-muted mt-2">
-            Current File: <a href="{{ asset('storage/' . $euc->file_chem) }}" target="_blank">{{ ($euc->file_chem) }}</a>
+            Current File: <a href="{{ asset('storage/' . $euc->file_chem) }}" target="_blank">{{ ($euc->name) }}</a>
         </small>
     @else
         <small class="form-text text-muted mt-2">No file uploaded yet.</small>

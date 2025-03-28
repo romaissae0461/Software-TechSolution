@@ -10,8 +10,13 @@ use Illuminate\Support\Facades\Mail;
 class NewsController extends Controller
 {
     public function index(){
+        try{
         $news = News :: orderBy('created_at','desc')->paginate(5);
         return view('home', compact('news'));
+        } catch (\Exception $e) {
+            \Log::error('Error in index(): ' . $e->getMessage());
+            abort(500, 'Something went wrong.');
+        }
     }
 
     public function show($id)

@@ -32,9 +32,9 @@
                         
                         <td>
                         @if ($process->filemaster)
-                            <a href="{{ asset('storage/'.$process->filemaster) }}" target="_blank" class="btn btn-sm btn-info">
-                            View PDF
-                            </a>
+                        <a href="{{ route('autopilot.view', ['id' => $process->id, 'name' => Str::slug($process->name)]) }}" target="_blank" class="btn btn-sm btn-info">
+                    View PDF
+                </a>
                             @endif
                         </td>
                         <td>
@@ -45,7 +45,7 @@
                                 <form action="{{ route('autopilot.delete', $process->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this process?')"><i class="fas fa-trash fa-lg"></i></button>
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this master?')"><i class="fas fa-trash fa-lg"></i></button>
                                 </form>
                             @endif
                         </td>

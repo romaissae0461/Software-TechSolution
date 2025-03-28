@@ -33,7 +33,7 @@
 
             <div class="form-group">
                 <label for="euc">EUC Technical Engineer</label>
-                <select class="form-control" name="euc" id="euc">
+                <select class="form-control" name="euc" id="euc" required>
                     <option value="" disabled selected>Select Responsible EUC </option>
                     <option value="Amina ELKEBBAJ">Amina ELKEBBAJ</option>
                     <option value="Zakaria EL IDRISSI">Zakaria EL IDRISSI</option>
@@ -51,7 +51,7 @@
 
             <div class="form-group mt-3">
                 <label for="filemaster">Upload PDF</label>
-                <input type="file" name="filemaster" id="filemaster" class="form-control">
+                <input type="file" name="filemaster" id="filemaster" class="form-control" required>
                 @error('filemaster')
         <small class="text-danger">{{ $message }}</small>
     @enderror

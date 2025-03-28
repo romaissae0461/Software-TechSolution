@@ -9,8 +9,13 @@ use App\Models\Document;
 class TechSolController extends Controller
 {
     public function index(){
+        try{
         $techsols=TechSol::all();
         return view('tech.index', compact('techsols'));
+        } catch (\Exception $e) {
+            \Log::error('Error in index(): ' . $e->getMessage());
+            abort(500, 'Something went wrong.');
+        }
     }
     
     public function show($id){
