@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Cache;
 class SoftwareController extends Controller
 {
     public function index(){
+        ini_set('max_execution_time', 35);
         try{
         $softwares=Cache::remember('software_list', 60, function () {
             return Software::paginate(10);

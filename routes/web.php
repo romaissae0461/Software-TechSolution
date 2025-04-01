@@ -17,7 +17,7 @@ use App\Http\Controllers\MasterAutoPilotController;
 // });
 
 Route::middleware('auth')->group(function () {
-    ini_set('max_execution_time', 35);
+    
     Route::get('/softwares', [SoftwareController::class, 'index'])->name('software.index');
 
     Route::get('/addsoftware', [SoftwareController::class, 'create'])
