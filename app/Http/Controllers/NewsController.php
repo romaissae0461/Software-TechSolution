@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 class NewsController extends Controller
 {
     public function index(){
+        ini_set('max_execution_time', 35);
         try{
         $news = News :: orderBy('created_at','desc')->paginate(5);
         return view('home', compact('news'));

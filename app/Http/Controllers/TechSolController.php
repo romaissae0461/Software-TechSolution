@@ -9,6 +9,7 @@ use App\Models\Document;
 class TechSolController extends Controller
 {
     public function index(){
+        ini_set('max_execution_time', 35);
         try{
         $techsols=TechSol::all();
         return view('tech.index', compact('techsols'));

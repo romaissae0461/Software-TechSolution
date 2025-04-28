@@ -16,6 +16,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        ini_set('max_execution_time', 35);
         return view('profile.edit', [
             'user' => $request->user(),
         ]);

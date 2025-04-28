@@ -10,6 +10,7 @@ use App\Models\TechSol;
 class DocumentController extends Controller
 {
     public function index(){
+        ini_set('max_execution_time', 35);
         try{
         $documentations = Document::all();
         return view('software.index', compact('documentations'));

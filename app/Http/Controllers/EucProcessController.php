@@ -9,6 +9,7 @@ use App\Models\EucProcess;
 class EucProcessController extends Controller
 {
     public function index(){
+        ini_set('max_execution_time', 35);
         try{
         $euc=EucProcess::all();
         return view('euc.index', compact('euc'));
