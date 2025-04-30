@@ -76,7 +76,7 @@
             <div class="card-body">
                 <!-- <p><strong>{{ $documentation->titre }}</strong></p> -->
                 <p><strong>Description:</strong> {{ $documentation->description }}</p>
-                <p><a href="{{ asset('storage/'.$documentation->file_path) }}" target="_blank" class="btn btn-sm btn-info">
+                <p><a href="{{ route('doc.view', ['id' => $documentation->id, 'titre' => Str::slug($documentation->titre)]) }}" target="_blank" class="btn btn-sm btn-info">
                         View PDF
                     </a>
                 </p>
