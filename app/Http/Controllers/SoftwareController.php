@@ -15,15 +15,9 @@ class SoftwareController extends Controller
 {
     public function index(){
         ini_set('max_execution_time', 35);
-        try{
-        $softwares=Cache::remember('software_list', 60, function () {
-            return Software::paginate(10);
-        });
-        } catch (\Exception $e) {
-            \Log::error('Error in index(): ' . $e->getMessage());
-            abort(500, 'Something went wrong.');
-        }
         
+        $softwares=Software::paginate(10);
+                
         $documentations = Document::all();
         return view('software.index', compact('softwares', 'documentations'));
     }
